@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :baskets do
     resources :basket_items
   end
-  rersources :charity_profiles do
+  resources :charity_profiles do
     resources :donation_types
   end
 end
