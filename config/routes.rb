@@ -5,4 +5,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  devise_for :users
+  resources :baskets do
+    resources :basket_items
+  end
+  rersources :charity_profiles do
+    resources :donation_types
+  end
 end
