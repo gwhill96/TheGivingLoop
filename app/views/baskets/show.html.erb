@@ -1,0 +1,10 @@
+<div>
+  <h1>My basket</h1>
+
+  <ul>
+    <% @basket.basket_items.each do |item| %>
+      <li><%= item.donation_type.name %> <%= item.donation_type.price %></li>
+    <%end %>
+  </ul>
+
+</div>
