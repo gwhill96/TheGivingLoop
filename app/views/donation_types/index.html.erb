@@ -51,10 +51,10 @@
         <% end %>
   <% elsif !current_user.charity %>
     <h3>My Basket</h3>
-        <% if current_user.baskets.empty? %>
+        <% if @basket.basket_items.empty? %>
           <h3>empty basket</h3>
         <% else %>
-          <% current_user.baskets.last.basket_items.each do |item| %>
+          <% @basket.basket_items.each do |item| %>
             <li><%= item.donation_type.name %> <%= item.donation_type.price %></li>
           <% end %>
         <% end %>
@@ -76,4 +76,3 @@
   <%# <%= hidden_field_tag 'donation_type_id', @donation_type.id %>
   <%# <%= submit_tag 'Add To Basket', class: 'btn btn-primary' %>
 <%# <% end %>
-
