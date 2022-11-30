@@ -32,16 +32,17 @@
 <div class="card">
   <% if current_user.nil? %>
     <h3>My Basket</h3>
-    <%= link_to "View Final Basket", basket_path(@basket) %>
      <% if @basket.basket_items.empty? %>
-     <h3>empty basket</h3>
+     <p>empty basket</p>
      <% else %>
      <% @basket.basket_items.each do |item| %>
-        <li><%= item.donation_type.name %> <%= item.donation_type.price %></li>
-        <% end %>
+      <%= link_to "View Final Basket", basket_path(@basket) %>
+          <li><%= item.donation_type.name %> <%= item.donation_type.price %></li>
+          <% end %>
+      <%= link_to "View Final Basket", basket_path(@basket) %>
       <% end %>
 
-    <%# <%= link_to "Check Out As Guest",  %>
+    <%# <%= link_to "Check Out As Guest",  This form code below is for a different page %>
         <%= simple_form_for :guest_basket, url: basket_path(@basket), method: :patch do |f| %>
           <%= f.input :email %>
           <%= f.input :first_name %>
@@ -52,11 +53,12 @@
   <% elsif !current_user.charity %>
     <h3>My Basket</h3>
         <% if @basket.basket_items.empty? %>
-          <h3>empty basket</h3>
+          <p>empty basket</p>
         <% else %>
           <% @basket.basket_items.each do |item| %>
             <li><%= item.donation_type.name %> <%= item.donation_type.price %></li>
           <% end %>
+          <%= link_to "View Final Basket", basket_path(@basket) %>
         <% end %>
   <% elsif current_user.charity %>
     <h1>Welcome to the charity page</h1>
