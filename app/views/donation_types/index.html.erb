@@ -35,30 +35,31 @@
      <% if @basket.basket_items.empty? %>
      <p>empty basket</p>
      <% else %>
-     <% @basket.basket_items.each do |item| %>
-      <%= link_to "View Final Basket", basket_path(@basket) %>
-          <li><%= item.donation_type.name %> <%= item.donation_type.price %></li>
+        <div>
+          <%= @basket.basket_items.count %>
+          <%= link_to "View Final Basket", basket_path(@basket) %>
+          <% sum = 0 %>
+          <% @basket.basket_items.each do |item| %>
+            <% sum += item.donation_type.price %>
           <% end %>
-      <%= link_to "View Final Basket", basket_path(@basket) %>
+          <%= sum %>
+        </div>
       <% end %>
-
     <%# <%= link_to "Check Out As Guest",  This form code below is for a different page %>
-        <%= simple_form_for :guest_basket, url: basket_path(@basket), method: :patch do |f| %>
-          <%= f.input :email %>
-          <%= f.input :first_name %>
-          <%= f.input :last_name %>
-          <%= f.input :phone_number %>
-          <%= f.submit 'Checkout' %>
-        <% end %>
   <% elsif !current_user.charity %>
     <h3>My Basket</h3>
         <% if @basket.basket_items.empty? %>
           <p>empty basket</p>
         <% else %>
-          <% @basket.basket_items.each do |item| %>
-            <li><%= item.donation_type.name %> <%= item.donation_type.price %></li>
-          <% end %>
-          <%= link_to "View Final Basket", basket_path(@basket) %>
+          <div>
+            <%= @basket.basket_items.count %>
+            <%= link_to "View Final Basket", basket_path(@basket) %>
+            <% sum = 0 %>
+            <% @basket.basket_items.each do |item| %>
+              <% sum += item.donation_type.price %>
+            <% end %>
+            <%= sum %>
+          </div>
         <% end %>
   <% elsif current_user.charity %>
     <h1>Welcome to the charity page</h1>
