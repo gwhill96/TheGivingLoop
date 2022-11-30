@@ -1,7 +1,5 @@
 class DonationTypesController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :initialize_session
-  before_action :increment_visit_count, only: :index
 
   def index
     # THIS IS THE CODE WHERE THE BASKET IS BEING INSTANTIATED - NOT IN BASKET CONTROLLER
@@ -55,15 +53,6 @@ class DonationTypesController < ApplicationController
   end
 
   private
-
-  def initialize_session
-    session[:visit_count] ||= 0 # initialize the visit count on first visit
-  end
-
-  def increment_visit_count
-    session[:visit_count] += 1 # increments the count with each visit
-    @visit_count = session[:visit_count]
-  end
 
   def donationtype_params
     params.require(:donationtype).permit(:name, :price)
