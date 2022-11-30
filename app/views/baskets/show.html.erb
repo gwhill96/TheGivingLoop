@@ -6,5 +6,12 @@
       <li><%= item.donation_type.name %> <%= item.donation_type.price %></li>
     <%end %>
   </ul>
-
+   <%# <%= link_to "Guest checkout" %>
+   <%# <%= link_to "Create an account" %>
+  <% if current_user.nil? %>
+    <%= link_to "Guest Checkout" %>
+    <%= link_to "Create an account" %>
+  <% else %>
+    <%= link_to "Continue to Checkout" %>
+  <% end %>
 </div>
