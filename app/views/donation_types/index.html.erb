@@ -4,7 +4,31 @@
 
 <div class="card">
 <% @donationtypes.each do |donationtype| %>
-<% @donationtypes.name %>
-<% @donationtypes.price %>
-<%# photo for card %>
+<li><%= donationtype.name %> - £ <%= donationtype.price %></li>
+<%= simple_form_for [ @basket, @basket_item ] do |f| %>
+  <%= f.hidden_field :donation_type_id, value: donationtype.id %>
+  <%= f.submit "Add To Basket" %>
+  <% end %>
+<% end %>
 </div>
+
+<%#
+  <%= form_with url:  basket_basket_items_path[@basket] do %>
+    <%# <%= hidden_field_tag 'donation_type_id', donationtype.id %>
+    <%# <%= hidden_field_tag 'basket_id', @basket.id %>
+    <%# <%= submit_tag 'Add To Basket', class: 'btn btn-primary' %>
+    <%# <%= raise %>
+  <%# <% end %>
+<%# photo for card %>
+
+
+<br>
+
+<% if !current_user.charity %>
+  <h3>My Basket</h3>
+  <div class="card">
+
+
+
+  </div>
+<% end %>
