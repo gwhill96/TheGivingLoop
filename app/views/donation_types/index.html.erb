@@ -4,8 +4,7 @@
 
 <h1>Home Page/Index Page for Donations</h1>
 
-<p>You have visited this site <%= pluralize @visit_count, 'time' %>.</p>
-
+<div class="card_container">
 <div class="card">
 <% @donationtypes.each do |donationtype| %>
 <li><%= donationtype.name %> - £ <%= donationtype.price %></li>
@@ -77,3 +76,4 @@
   <%# <%= hidden_field_tag 'donation_type_id', @donation_type.id %>
   <%# <%= submit_tag 'Add To Basket', class: 'btn btn-primary' %>
 <%# <% end %>
+

@@ -1,0 +1,28 @@
+.form-login {
+  background: #8EB8E5;
+  color: white;
+  padding: 20px 20px;
+  margin-top: 50px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+  // Can chain SCSS like below so only targetting the h2 within the .form-login class
+  h2 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .btn {
+    width: 100%;
+    margin-bottom: 20px;
+    background: #F07B3F;
+    border-color: #F07B3F;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+    &:hover{
+      background-color:#ed6623
+    }
+    &:focus{
+      background-color: #ed6623;
+    }
+  }
+}
