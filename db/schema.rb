@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_29_124443) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_30_130924) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,9 +24,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_124443) do
   end
 
   create_table "baskets", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "guest_user"
     t.index ["user_id"], name: "index_baskets_on_user_id"
   end
 
@@ -45,16 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_124443) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["charity_profile_id"], name: "index_donation_types_on_charity_profile_id"
-  end
-
-  create_table "user_profiles", force: :cascade do |t|
-    t.string "address"
-    t.boolean "charity"
-    t.string "phone_number"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -79,5 +70,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_124443) do
   add_foreign_key "baskets", "users"
   add_foreign_key "charity_profiles", "users"
   add_foreign_key "donation_types", "charity_profiles"
-  add_foreign_key "user_profiles", "users"
 end
