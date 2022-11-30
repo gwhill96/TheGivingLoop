@@ -7,15 +7,15 @@ class DonationTypesController < ApplicationController
   end
 
   def show
-    @donationtype = Donationtype.find(params[:id])
+    @donationtype = DonationType.find(params[:id])
   end
 
   def new
-    @donationtype = Donationtype.new
+    @donationtype = DonationType.new
   end
 
   def create
-    @donationtype = Donationtype.new(donationtype_params)
+    @donationtype = DonationType.new(donationtype_params)
     if @donationtype.save!
       redirect_to user_path(current_user)
     else
@@ -24,7 +24,7 @@ class DonationTypesController < ApplicationController
   end
 
   def edit
-    @donationtype = Donationtype.find(params[:id])
+    @donationtype = DonationType.find(params[:id])
   end
 
   def update
@@ -34,7 +34,7 @@ class DonationTypesController < ApplicationController
   end
 
   def destroy
-    @donationtype = Donationtype.find(params[:id])
+    @donationtype = DonationType.find(params[:id])
     @donationtype.destroy
     redirect_to user_path(current_user), status: :see_other
   end
