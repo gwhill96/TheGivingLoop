@@ -7,8 +7,8 @@
   align-items: center;
   align-content: space-between;
 }
-
 .card {
+  margin-top: 15px;
   height: 200px;
   width: 80%;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
@@ -20,17 +20,22 @@
 }
 .card-title {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 5px;
+  left: 10px;
   font-weight: bold;
   font-size: 32px;
 }
 .card-price {
   position: absolute;
-  right: 10px;
   top: 10px;
+  right: 10px;
   font-weight: bold;
   font-size: 32px;
+}
+.card-button {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }
 
 // .card-category {
