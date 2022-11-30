@@ -8,4 +8,18 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates :phone_number, :address, presence: true
   validates :phone_number, :address, uniqueness: true
+
+  # def initialize
+  #   Basket.create!(user:id)
+
+  # after_create :create_basket
+
+  # def after_database_authentication
+  #   Basket.create!(user_id: current_user.id)
+  # end
+
+  # def create_basket
+  #   Basket.create!(user_id: current_user)
+  #   raise
+  # end
 end

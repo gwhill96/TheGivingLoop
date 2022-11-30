@@ -1,6 +1,9 @@
 class DonationTypesController < ApplicationController
   def index
-    @donationtypes = DonationType.where(params[:user_id])
+    @donationtypes = DonationType.all
+    @basket = Basket.create!(user_id: current_user.id)
+    @basket_item = BasketItem.new
+    # unless Basket.where(user_id: current_user)
   end
 
   def show

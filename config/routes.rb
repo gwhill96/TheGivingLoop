@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :baskets do
-    resources :basket_items
+    resources :basket_items, only: %i[show create]
   end
   resources :charity_profiles do
     resources :donation_types
