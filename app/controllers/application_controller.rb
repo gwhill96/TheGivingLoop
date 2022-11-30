@@ -3,6 +3,31 @@ class ApplicationController < ActionController::Base
   # helper_method :current_user -- we will need to add this back in once we have overridden the devise log in
   # after_action :create_basket
 
+  # Warden::Manager.after_authentication do |user, auth, opts|
+  #   auth.session[:basket_id] ||= Basket.create!.id
+  # end
+
+  # helper_method :current_basket
+
+  # def after_database_authentication
+  #   self.current_basket
+  # end
+
+  # def current_basket
+  #   @current_basket ||= find_basket
+  # end
+
+  # private
+
+  # def find_basket
+  #   basket = Basket.find_by(id: session[:basket_id])
+  #   if basket.blank?
+  #     basket = Basket.create
+  #   end
+  #   session[:basket_id] = basket.id
+  #   return basket
+  # end
+
   # private
 
   # def current_user
