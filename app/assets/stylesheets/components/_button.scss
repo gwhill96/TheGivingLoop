@@ -1,0 +1,29 @@
+.btn-orange-rounded {
+  margin-top: 10px;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  background: #F07B3F;
+  border-radius: 5px;
+  padding: 8px 5px;
+}
+
+.btn-orange-rounded:hover {
+  color: white;
+  background: #e86c2e;
+}
+
+
+.btn-orange-square {
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  background: #F07B3F;
+  padding: 8px 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.btn-orange-square:hover {
+  color: white;
+  background: #e86c2e;
+}
