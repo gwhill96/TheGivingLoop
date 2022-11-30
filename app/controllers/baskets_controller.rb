@@ -3,7 +3,6 @@ class BasketsController < ApplicationController
   before_action :find_basket, only: %i[update show checkout]
 
   def create
-
     # THINK NONE OF THIS CODE IS BEING USED
     @basket = Basket.new
     @basket.user = current_user if current_user
