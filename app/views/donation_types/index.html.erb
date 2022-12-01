@@ -8,6 +8,10 @@
 <div class="card">
 <% @donationtypes.each do |donationtype| %>
 <li><%= donationtype.name %> - £ <%= donationtype.price %></li>
+<%#if @user.charity? && donationtype.charity_profile.user_id == @user.id %>
+<%# <%= link_to "View this card", :action => "charity_profiles", :id => @charity_profile.id, :controller => "donation_types", :id2 => donationtype.id %>
+<%= link_to "Edit this card", edit_charity_profile_donation_type_path(@charity_profile.id, donationtype.id) if @user.charity? && donationtype.charity_profile.user_id == @user.id %>
+<%# end %>
 <%= simple_form_for [ @basket, @basket_item ] do |f| %>
   <%= f.hidden_field :donation_type_id, value: donationtype.id %>
   <%= f.submit "Add To Basket" %>
@@ -82,3 +86,9 @@
   <%# <%= hidden_field_tag 'donation_type_id', @donation_type.id %>
   <%# <%= submit_tag 'Add To Basket', class: 'btn btn-primary' %>
 <%# <% end %>
+
+<%# <div>
+<% if current_user.charity %>
+  <%# <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@donationtype) %>
+<%# <% end %>
+<%# </div> %>
