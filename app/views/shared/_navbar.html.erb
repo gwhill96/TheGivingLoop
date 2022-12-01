@@ -10,7 +10,7 @@
           <%= image_tag "InfoIcon.png", class: "nav-bar-icon-images" %>
         </li>
       <% end %>
-      <%= link_to root_path(@root) do %>
+      <%= link_to user_path(current_user) do %>
         <li class="nav-item">
           <%= image_tag "UserIcon.png", class: "nav-bar-icon-images" %>
         </li>
