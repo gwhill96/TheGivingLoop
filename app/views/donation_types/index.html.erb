@@ -6,7 +6,7 @@
 <div class="card_container">
 <div class="card">
 <% @donationtypes.each do |donationtype| %>
-<li><%= donationtype.name %> - £ <%= donationtype.price %></li>
+<li><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
 <%= simple_form_for [ @basket, @basket_item ] do |f| %>
   <%= f.hidden_field :donation_type_id, value: donationtype.id %>
   <%= f.submit "Add To Basket" %>
