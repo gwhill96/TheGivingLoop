@@ -9,8 +9,31 @@
    <%# <%= link_to "Guest checkout" %>
    <%# <%= link_to "Create an account" %>
   <% if current_user.nil? %>
-    <%= link_to "Guest Checkout" %>
-    <%= link_to "Create an account" %>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Guest Checkout</button>
+  <div class="modal custom fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background: #8EB8E5;" >
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Guest Checkout</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for :guest_basket, url: basket_path(@basket), method: :patch do |f| %>
+          <%= f.input :email %>
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.input :phone_number %>
+          <%= f.submit 'Checkout', class: "btn"  %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+    <button>Create an account</button>
+
+
+
   <% else %>
     <%= link_to "Continue to Checkout" %>
   <% end %>
