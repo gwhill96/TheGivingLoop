@@ -29,12 +29,15 @@
 
 <br>
 
-<div class="card">
+<div class="card"
+  data-controller="basket-subscription"
+  data-basket-subscription-basket-id-value="<%= @basket.id %>">
   <% if current_user.nil? %>
     <h3>My Basket</h3>
      <% if @basket.basket_items.empty? %>
      <p>empty basket</p>
      <% else %>
+      <div class="basket-items" data-basket-subscription-target="basket-items">
         <div>
           <%= @basket.basket_items.count %>
           <%= link_to "View Final Basket", basket_path(@basket) %>
