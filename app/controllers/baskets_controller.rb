@@ -3,10 +3,9 @@ class BasketsController < ApplicationController
   before_action :find_basket, only: %i[update show checkout]
 
   def create
-    # THINK NONE OF THIS CODE IS BEING USED
+    # THINK NONE OF THIS CODE IS BEING USED?
     @basket = Basket.new
     @basket.user = current_user if current_user
-    # @basket.guest_user = ? if current_user.nil?
     if @basket.save
       session[:basket_id] = @basket.id
       redirect_to @basket, notice: "Basket with id:#{@basket.id} was successfully created."
