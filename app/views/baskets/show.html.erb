@@ -35,6 +35,10 @@
 
 
   <% else %>
+    <%= form_with url: baskets_path do %>
+    <%= hidden_field_tag 'basket_id', @basket.id %>
+    <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
+  <% end %>
     <%= link_to "Continue to Checkout" %>
   <% end %>
 </div>
