@@ -5,6 +5,7 @@ class DonationType < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 50 }
   validates :price, presence: true
+  monetize :price_cents
   # Redeemed validations?
 
   # def number_to_currency_gbp(number)

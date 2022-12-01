@@ -29,11 +29,11 @@ puts "I am creating a charity profile user"
 charityprofile2 = CharityProfile.create(user_id: user3.id)
 puts "I am creating a charity profile user"
 
-donationtype1 = DonationType.create(name: "Bed for one night", price: 10.00, charity_profile_id: charityprofile1.id)
+donationtype1 = DonationType.create(name: "Bed for one night", price_cents: 1000, charity_profile_id: charityprofile1.id)
 puts "I am creating a donation-type"
-donationtype2 = DonationType.create(name: "Meal", price: 5.00, charity_profile_id: charityprofile1.id)
+donationtype2 = DonationType.create(name: "Meal", price_cents: 500, charity_profile_id: charityprofile1.id)
 puts "I am creating a donation-type"
-donationtype3 = DonationType.create(name: "Bed for a week", price: 70.00, charity_profile_id: charityprofile2.id)
+donationtype3 = DonationType.create(name: "Bed for a week", price_cents: 7000, charity_profile_id: charityprofile2.id)
 puts "I am creating a donation-type"
-donationtype4 = DonationType.create(name: "Food for a day", price: 12.50, charity_profile_id: charityprofile2.id)
+donationtype4 = DonationType.create(name: "Food for a day", price_cents: 1250, charity_profile_id: charityprofile2.id)
 puts "I am creating a donation-type"

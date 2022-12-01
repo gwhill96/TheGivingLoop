@@ -45,6 +45,10 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
+# below are money handling gems:
+gem 'money-rails'
+gem 'stripe'
+
 #Pundit
 gem "pundit"
 
