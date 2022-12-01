@@ -4,6 +4,7 @@ class BasketsController < ApplicationController
 
   def create
     # THINK NONE OF THIS CODE IS BEING USED?
+    authorize @basket
     @basket = Basket.new
     @basket.user = current_user if current_user
     if @basket.save
@@ -15,15 +16,18 @@ class BasketsController < ApplicationController
   end
 
   def show
+    authorize @basket
   end
 
   def update
+    authorize @basket
     @basket.update(guest_user: guest_basket_params)
     flash[:notice] = "Your basket was successfully updated"
     redirect_to @basket
   end
 
   def checkout
+    authorize @basket
     session[:basket_id] = nil
   end
 

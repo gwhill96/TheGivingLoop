@@ -9,6 +9,7 @@ class BasketItemsController < ApplicationController
 
   def create
     @basket_item = BasketItem.new(basket_item_params)
+    authorize @basket_item
     @basket = Basket.find(params[:basket_id])
     @basket.user = current_user if current_user
     @basket_item.basket = @basket
