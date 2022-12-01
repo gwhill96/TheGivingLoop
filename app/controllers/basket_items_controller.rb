@@ -23,6 +23,12 @@ class BasketItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @basket_item = BasketItem.find(params[:basket_id])
+    @basket_item.destroy
+    redirect_to basket_path, status: :see_other
+  end
+
   private
 
   def basket_item_params
