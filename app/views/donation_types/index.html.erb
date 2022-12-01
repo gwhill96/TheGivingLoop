@@ -3,7 +3,6 @@
 <%# http://localhost:3000/charity_profiles/1/donation_types %>
 
 <h1>Home Page/Index Page for Donations</h1>
-
 <div class="card_container">
 <div class="card">
 <% @donationtypes.each do |donationtype| %>
@@ -33,41 +32,21 @@
 
 <br>
 
-<div class="card"
-  data-controller="basket-subscription"
-  data-basket-subscription-basket-id-value="<%= @basket.id %>">
+<div class="card">
   <% if current_user.nil? %>
-    <h3>My Basket</h3>
-     <% if @basket.basket_items.empty? %>
-     <p>empty basket</p>
-     <% else %>
-      <div class="basket-items" data-basket-subscription-target="basket-items">
-        <div>
-          <%= @basket.basket_items.count %>
-          <%= link_to "View Final Basket", basket_path(@basket) %>
-          <% sum = 0 %>
-          <% @basket.basket_items.each do |item| %>
-            <% sum += item.donation_type.price %>
-          <% end %>
-          <%= sum %>
+    <div data-controller="basket-subscription"
+        data-basket-subscription-basket-id-value="<%= @basket.id %>">
+        <div class="basket" data-basket-subscription-target="basket">
+          <%= render "basket_items/basket", basket: @basket %>
         </div>
-      <% end %>
-    <%# <%= link_to "Check Out As Guest",  This form code below is for a different page %>
+    </div>
   <% elsif !current_user.charity %>
-    <h3>My Basket</h3>
-        <% if @basket.basket_items.empty? %>
-          <p>empty basket</p>
-        <% else %>
-          <div>
-            <%= @basket.basket_items.count %>
-            <%= link_to "View Final Basket", basket_path(@basket) %>
-            <% sum = 0 %>
-            <% @basket.basket_items.each do |item| %>
-              <% sum += item.donation_type.price %>
-            <% end %>
-            <%= sum %>
-          </div>
-        <% end %>
+    <div data-controller="basket-subscription"
+      data-basket-subscription-basket-id-value="<%= @basket.id %>">
+      <div class="basket" data-basket-subscription-target="basket">
+        <%= render "basket_items/basket", basket: @basket %>
+      </div>
+    </div>
   <% elsif current_user.charity %>
     <h1>Welcome to the charity page</h1>
   <% end %>
@@ -92,3 +71,4 @@
   <%# <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@donationtype) %>
 <%# <% end %>
 <%# </div> %>
+

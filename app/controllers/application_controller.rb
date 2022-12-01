@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+
   include Pundit::Authorization
 
   # Pundit: allow-list approach
@@ -18,6 +19,21 @@ class ApplicationController < ActionController::Base
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def configure_permitted_parameters
+    # For additional fields in app/views/devise/registrations/new.html.erb
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :address, :phone_number])
+
+    # For additional in app/views/devise/registrations/edit.html.erb
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name])
+  end
+end
+
+
+
+
 
   # helper_method :current_user -- we will need to add this back in once we have overridden the devise log in
   # after_action :create_basket
@@ -58,4 +74,3 @@ class ApplicationController < ActionController::Base
   # def create_basket
   #   Basket.create!(user_id: @current_user.id)
   # end
-end

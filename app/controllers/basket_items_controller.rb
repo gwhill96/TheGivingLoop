@@ -9,30 +9,19 @@ class BasketItemsController < ApplicationController
 
   def create
     @basket_item = BasketItem.new(basket_item_params)
-    basket_id = session[:basket_id]
-    if basket_id
-      @basket = Basket.find(basket_id)
-    else
-      # Think this code is not getting used as there should always be a basket_id by this point.
-      @basket = Basket.new
-      @basket.user = current_user if current_user
-      basket_id = session[:basket_id]
-      @basket.id = basket_id
-      @basket.save
-    end
+    @basket = Basket.find(params[:basket_id])
+    @basket.user = current_user if current_user
     @basket_item.basket = @basket
-    @basket_item.save
+    if @basket_item.save
+      BasketChannel.broadcast_to(
+        @basket,
+        render_to_string(partial: "basket", locals: { basket: @basket })
+      )
+      head :ok
+    else
+      render "root", status: :unprocessable_entity
+    end
   end
-
-  # def new
-  #   @basket_item = BasketItem.new
-  # end
-
-  # def destroy
-  #   @basket_item.find(params[:id])
-  #   @basket_item.destroy
-  #   redirect_to basket_path, status: :see_other
-  # end
 
   private
 
