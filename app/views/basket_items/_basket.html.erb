@@ -1,0 +1,7 @@
+<div id="basket-<%= @basket.id %>">
+  <% price = [] %>
+  <% @basket.basket_items.each do |item| %>
+    <% price << item.donation_type.price %>
+  <% end %>
+  <%= @basket.basket_items.count %> - <%= link_to "View Basket", basket_path(@basket) %> - <%= price.sum %>
+</div>

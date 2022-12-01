@@ -4,11 +4,11 @@ import { createConsumer } from "@rails/actioncable"
 // Connects to data-controller="basket-subscription"
 export default class extends Controller {
   static values = { basketId : Number }
-  static targets = ["basket-items"]
+  static targets = ["basket"]
   connect() {
     this.channel = createConsumer().subscriptions.create(
       { channel: "BasketChannel", id: this.basketIdValue },
-      { received: data => console.log(data) }
+      { received: data => this.basketTarget.innerHTML = data }
     )
     console.log(`Subscribe to the basket with the id ${this.basketIdValue}.`)
     }
