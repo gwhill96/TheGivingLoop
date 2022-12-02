@@ -1,4 +1,6 @@
 class PaymentsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def new
     @order = current_user.baskets.where(state: 'pending').find(params[:basket_id])
     authorize @order

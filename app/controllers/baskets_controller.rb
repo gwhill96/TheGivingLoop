@@ -42,6 +42,7 @@ class BasketsController < ApplicationController
   end
 
   def update
+    skip_authorization
     @basket.update(guest_user: guest_basket_params)
     items = BasketItem.where(basket_id: @basket.id)
     line_items_data = {}

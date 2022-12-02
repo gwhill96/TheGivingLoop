@@ -3,8 +3,6 @@ class BasketPolicy < ApplicationPolicy
     # NOTE: Be explicit about which records you allow access to!
   end
 
-  end
-
   def create?
     true
   end
@@ -20,5 +18,4 @@ class BasketPolicy < ApplicationPolicy
   def checkout?
     true
   end
-
 end
