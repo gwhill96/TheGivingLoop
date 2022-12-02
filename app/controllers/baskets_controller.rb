@@ -1,6 +1,6 @@
 class BasketsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :find_basket, only: %i[update show checkout]
+  before_action :find_basket, only: %i[update show]
 
   def create
     @basket = Basket.find(params[:basket_id])
@@ -41,7 +41,6 @@ class BasketsController < ApplicationController
     authorize @basket
   end
 
-
   def update
     authorize @basket
     @basket.update(guest_user: guest_basket_params)
@@ -49,10 +48,10 @@ class BasketsController < ApplicationController
     redirect_to @basket
   end
 
-  def checkout
-    authorize @basket
-    session[:basket_id] = nil
-  end
+  # def checkout
+  #   authorize @basket
+  #   session[:basket_id] = nil
+  # end
 
   private
 

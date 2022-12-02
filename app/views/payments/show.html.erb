@@ -1,0 +1,13 @@
+<div class="checkcont">
+  <img src="<%= image_path('THE GIVING LOOP (4).png') %>" alt="logo">
+  <h1>Thank you for your donation!</h1>
+  <div>
+    <p>Here's a breakdown of your order:</p>
+    <p>Order #<%= @order.id %></p>
+    <% @order.basket_items.each do |item| %>
+    <li><strong><%= item.donation_type.name %></strong><%= humanized_money_with_symbol item.donation_type.price %></li>
+    <% end %>
+    <p>Total Amount: <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
+    <p>We'll let you know once your donation's been redeemed!</p>
+  </div>
+</div>

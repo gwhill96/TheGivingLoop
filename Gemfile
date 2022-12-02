@@ -48,6 +48,7 @@ gem "sassc-rails"
 # below are money handling gems:
 gem 'money-rails'
 gem 'stripe'
+gem 'stripe_event'
 
 #Pundit
 gem "pundit"
