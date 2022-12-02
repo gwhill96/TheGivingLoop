@@ -7,9 +7,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :baskets do
-    resources :basket_items, only: %i[show create destroy]
-    get :checkout, on: :member
+
+  resources :baskets, only: %i[show create] do
+    resources :payments, only: :new
+    resources :basket_items
+    # get :checkout, on: :member
   end
   resources :charity_profiles do
     resources :donation_types
