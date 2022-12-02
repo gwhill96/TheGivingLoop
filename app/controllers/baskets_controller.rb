@@ -4,10 +4,11 @@ class BasketsController < ApplicationController
   before_action :find_basket, only: %i[update show checkout]
 
   def create
-    basket = Basket.find(params[:basket_id])
+    @basket = Basket.find(params[:basket_id])
+    authorize @basket
     user = current_user if current_user
-    basket.user = user
-    items = BasketItem.where(basket_id: basket.id)
+    @basket.user = user
+    items = BasketItem.where(basket_id: @basket.id)
     line_items_data = {}
     line_items_array = []
     items.each do |item|
@@ -26,15 +27,15 @@ class BasketsController < ApplicationController
       payment_method_types: ['card'],
       line_items: line_items_array,
       mode: "payment",
-      success_url: basket_url(basket),
-      cancel_url: basket_url(basket)
+      success_url: basket_url(@basket),
+      cancel_url: basket_url(@basket)
     )
     price_total = []
     line_items_array.each do |hash|
       price_total << hash[:price_data][:unit_amount]
     end
-    basket.update(checkout_session_id: session.id, amount_cents: price_total.sum, state: 'pending')
-    redirect_to new_basket_payment_path(basket)
+    @basket.update(checkout_session_id: session.id, amount_cents: price_total.sum, state: 'pending')
+    redirect_to new_basket_payment_path(@basket)
   end
 
   def show
