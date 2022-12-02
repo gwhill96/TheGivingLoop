@@ -27,3 +27,22 @@
   color: white;
   background: #e86c2e;
 }
+
+
+.btn-edit-orange-rounded {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+  background: #F07B3F;
+  border-radius: 5px;
+  padding: 8px 5px;
+  width: 140px;
+}
+
+.btn-edit-orange-rounded:hover {
+  color: white;
+  background: #e86c2e;
+}
