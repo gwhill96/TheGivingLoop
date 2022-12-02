@@ -78,14 +78,12 @@
           </div>
         </div>
       </div>
-    </div>
-  <% elsif !current_user.charity %>
-    <div>
-        <%= form_with url: baskets_path do %>
-        <%= hidden_field_tag 'basket_id', @basket.id %>
-        <%= submit_tag 'Continue to Payment', class: 'btn btn-primary' %>
-      <% end %>
-    </div>
-  <% end %>
-  </div>
-</div>
+
+    <% elsif !current_user.charity %>
+      <button>
+          <%= form_with url: baskets_path do %>
+          <%= hidden_field_tag 'basket_id', @basket.id %>
+          <%= submit_tag 'Continue to checkout', class: 'btn btn-primary' %>
+        <% end %>
+      </button>
+    <% end %>
