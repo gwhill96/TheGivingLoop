@@ -1,13 +1,16 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
+    authorize @user
   end
 
   def edit
     @user = current_user
+    authorize @user
   end
 
   def update
+    authorize @user
     @user = User.find(current_user.id)
     if @user.update!(user_params)
       redirect_to user_path(@user)
@@ -17,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorize @user
     @user.destroy
     # redirect_to users_path, status: :see_other
     redirect_to root_path(@root)

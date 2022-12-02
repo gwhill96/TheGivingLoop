@@ -38,9 +38,19 @@ class BasketsController < ApplicationController
   end
 
   def show
+    authorize @basket
+  end
+
+
+  def update
+    authorize @basket
+    @basket.update(guest_user: guest_basket_params)
+    flash[:notice] = "Your basket was successfully updated"
+    redirect_to @basket
   end
 
   def checkout
+    authorize @basket
     session[:basket_id] = nil
   end
 

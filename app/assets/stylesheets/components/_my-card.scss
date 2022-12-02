@@ -1,0 +1,58 @@
+.card_container {
+  display: flex;
+  margin: 0px auto auto auto;
+  max-width: 1000px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+}
+.my-card {
+  margin-top: 15px;
+  height: 200px;
+  width: 80%;
+  // text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  color: white;
+  position: relative;
+  border-radius: 10px;
+  background-image: url("hot_meal_card.png");
+  background-size: cover;
+}
+.card-title {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  font-weight: bold;
+  font-size: 32px;
+}
+.card-price {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+  font-size: 32px;
+}
+.card-button {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+// .card-category {
+//   position: absolute;
+//   top: 10px;
+//   left: 10px;
+//   font-size: 20px;
+// }
+// .card-link {
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   width: 100%;
+//   z-index:2;
+//   background: black;
+//   opacity: 0;
+// }
+// .card-link:hover{
+//   opacity: 0.1;
+// }

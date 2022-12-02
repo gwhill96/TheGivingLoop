@@ -1,0 +1,46 @@
+.b-container {
+  text-align: center;
+  margin: 25px;
+}
+
+.b-card {
+  background-color: #29415B;
+  padding: 5px;
+  border-radius: 25px;
+}
+
+.b-card-in {
+  background-color: white;
+  padding: 5px;
+  border-radius: 15px;
+  margin: 15px;
+}
+
+.f-card {
+  margin-top: 20px;
+  background-color: #29415B;
+  padding: 5px;
+  border-radius: 25px;
+}
+
+.f-card-in {
+  background-color: white;
+  padding: 10px;
+  border-radius: 15px;
+  margin: 15px;
+}
+
+.btn {
+  color: white;
+  width: 100%;
+  margin-bottom: 20px;
+  background: #F07B3F;
+  border-color: #F07B3F;
+  box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+  &:hover{
+    background-color:#ed6623
+  }
+  &:focus{
+    background-color: #ed6623;
+  }
+}

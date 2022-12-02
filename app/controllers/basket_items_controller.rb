@@ -9,6 +9,7 @@ class BasketItemsController < ApplicationController
 
   def create
     @basket_item = BasketItem.new(basket_item_params)
+    authorize @basket_item
     @basket = Basket.find(params[:basket_id])
     @basket.user = current_user if current_user
     @basket_item.basket = @basket
@@ -21,6 +22,12 @@ class BasketItemsController < ApplicationController
     else
       render "root", status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @basket_item = BasketItem.find(params[:basket_id])
+    @basket_item.destroy
+    redirect_to basket_path, status: :see_other
   end
 
   private
