@@ -7,15 +7,13 @@ class DonationTypesController < ApplicationController
     @basket_item = BasketItem.new
     basket_id = session[:basket_id]
     @basket = Basket.find_by(id: basket_id)
-    @user = current_user
+    @user = current_user unless current_user.nil?
     if @basket.nil?
       @basket = Basket.new
       @basket.user = current_user if current_user
       session[:basket_id] = @basket.id if @basket.save
     end
-    if current_user.charity
-      @charity_profile = CharityProfile.find(@user.id)
-    end
+    @charity_profile = CharityProfile.find(@user.id) if !@user.nil? && @user.charity
   end
 
   # def show
@@ -65,7 +63,7 @@ class DonationTypesController < ApplicationController
     params.require(:donationtype).permit(:name, :price)
   end
 
-  # def guest_token
-  #   session[:guest_token] ||= SecureRandom.uuid
-  # end
+  def guest_token
+    session[:guest_token] ||= SecureRandom.uuid
+  end
 end
