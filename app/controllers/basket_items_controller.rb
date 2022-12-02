@@ -26,6 +26,7 @@ class BasketItemsController < ApplicationController
 
   def destroy
     @basket_item = BasketItem.find(params[:basket_id])
+    authorize @basket_item
     @basket_item.destroy
     redirect_to basket_path, status: :see_other
   end
