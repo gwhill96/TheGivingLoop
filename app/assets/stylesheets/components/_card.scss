@@ -8,7 +8,7 @@
   align-content: space-between;
 }
 .card {
-  margin-top: 15px;
+  margin-top: 10px;
   height: 200px;
   width: 80%;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
@@ -23,7 +23,7 @@
   bottom: 5px;
   left: 10px;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 100%;
 }
 .card-price {
   position: absolute;
@@ -36,6 +36,7 @@
   position: absolute;
   right: 10px;
   bottom: 10px;
+  border: none !important;
 }
 
 // .card-category {

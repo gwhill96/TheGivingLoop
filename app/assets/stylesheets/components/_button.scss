@@ -6,7 +6,8 @@
   background: #F07B3F;
   border-radius: 5px;
   padding: 8px 5px;
-  width: 100px;
+  width: fit-content;
+  border-style: none !important;
 }
 
 .btn-orange-rounded:hover {
