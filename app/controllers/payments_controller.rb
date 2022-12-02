@@ -3,8 +3,8 @@ class PaymentsController < ApplicationController
 
   def new
     if current_user
-      authorize @order
       @order = current_user.baskets.where(state: 'pending').find(params[:basket_id])
+      authorize @order
     else
       skip_authorization
       @order = Basket.find(params[:basket_id])
@@ -13,11 +13,18 @@ class PaymentsController < ApplicationController
 
   def show
     if current_user
-      authorize @order
       @order = current_user.baskets.where(state: 'paid').find(params[:basket_id])
+      authorize @order
     else
       skip_authorization
       @order = Basket.where(state: 'paid').find(params[:basket_id])
     end
+    checkout
+  end
+
+  private
+
+  def checkout
+    session[:basket_id] = nil
   end
 end
