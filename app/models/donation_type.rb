@@ -1,6 +1,6 @@
 class DonationType < ApplicationRecord
   belongs_to :charity_profile
-  has_many :basket_items
+  has_many :basket_items, dependent: :destroy
   has_many :baskets, through: :basket_items
   validates :name, presence: true
   validates :name, length: { maximum: 50 }

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :baskets, dependent: :destroy
   has_many :basket_items, through: :baskets
+  has_one :charity_profile, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
