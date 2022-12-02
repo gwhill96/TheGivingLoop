@@ -26,7 +26,7 @@ class BasketsController < ApplicationController
       payment_method_types: ['card'],
       line_items: line_items_array,
       mode: "payment",
-      success_url: basket_url(@basket),
+      success_url: basket_payment_url(@basket),
       cancel_url: basket_url(@basket)
     )
     price_total = []
@@ -63,7 +63,7 @@ class BasketsController < ApplicationController
       payment_method_types: ['card'],
       line_items: line_items_array,
       mode: "payment",
-      success_url: basket_url(@basket),
+      success_url: basket_payment_url(@basket),
       cancel_url: basket_url(@basket)
     )
     price_total = []
