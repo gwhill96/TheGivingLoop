@@ -4,12 +4,11 @@ Rails.configuration.stripe = {
   signing_secret: ENV['STRIPE_WEBHOOK_SECRET_KEY'],
 }
 
-StripeEvent.signing_secret = Rails.configuration.stripe[:signing_secret]
-
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
+StripeEvent.signing_secret = Rails.configuration.stripe[:signing_secret]
 
 StripeEvent.configure do |events|
   events.subscribe 'checkout.session.completed' do |event|
-    StripeCheckoutSessionService.new(event)
+    StripeCheckoutSessionService.new.call(event)
   end
 end

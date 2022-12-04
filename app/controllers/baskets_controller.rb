@@ -26,7 +26,7 @@ class BasketsController < ApplicationController
       payment_method_types: ['card'],
       line_items: line_items_array,
       mode: "payment",
-      success_url: basket_url(@basket),
+      success_url: basket_payment_url(@basket, @basket),
       cancel_url: basket_url(@basket)
     )
     price_total = []
@@ -42,6 +42,7 @@ class BasketsController < ApplicationController
   end
 
   def update
+    skip_authorization
     @basket.update(guest_user: guest_basket_params)
     items = BasketItem.where(basket_id: @basket.id)
     line_items_data = {}
@@ -62,7 +63,7 @@ class BasketsController < ApplicationController
       payment_method_types: ['card'],
       line_items: line_items_array,
       mode: "payment",
-      success_url: basket_url(@basket),
+      success_url: basket_payment_url(@basket, @basket),
       cancel_url: basket_url(@basket)
     )
     price_total = []
