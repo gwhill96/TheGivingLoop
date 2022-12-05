@@ -17,12 +17,13 @@
 
       <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@charity_profile.id, donationtype.id) if !@user.nil? && @user.charity? && donationtype.charity_profile.user_id == @user.id %>
 
-      <%= simple_form_for [ @basket, @basket_item ] do |f| %>
-        <%= f.hidden_field :donation_type_id, value: donationtype.id %>
-        <div class="card-button">
-        <%= f.submit "Add To Basket", class: "btn-orange-rounded" %>
-        </div>
-      <% end %>
+        <%= simple_form_for [@basket, @basket_item] do |f| %>
+          <%= f.hidden_field :donation_type_id, value: donationtype.id %>
+          <%= f.hidden_field :basket_id, value: @basket.id %>
+          <div class="card-button">
+          <%= f.submit "Add To Basket", class: "btn-orange-rounded" %>
+          </div>
+        <% end %>
     </div>
   <% end %>
 </div>
@@ -41,6 +42,20 @@
           data-basket-subscription-basket-id-value="<%= @basket.id %>
             <%# <div data-basket-subscription-target="basket">
               <%= render "basket_items/basket", basket: @basket %>
+
+            </div>
+      <% elsif current_user.charity %>
+        <% price = [] %>
+        <h1>Donation Inventory</h1>
+        <% @unredeeemed_donations.each do |item| %>
+          <% price << item.donation_type.price %>
+        <% end %>
+        <p>Unredeemed Donations: <%= @unredeeemed_donations.count %></p>
+        <p>Total Amount: <%= price.sum %></p>
+        <%= simple_form_for :items_redeemed, url: unredeemed_items_path, method: :get do |f| %>
+          <%= f.input :donation_type, :collection => DonationType.order(:name), :prompt => "Choose a Donation To Redeem" %>
+          <%= f.submit "Redeem Donation", class: "btn-orange-rounded" %>
+        <% end %>
             <%# </div> %>
       <%# <% elsif current_user.charity %>
         <%# <h1>Welcome to the charity page</h1>

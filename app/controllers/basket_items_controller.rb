@@ -24,6 +24,15 @@ class BasketItemsController < ApplicationController
     end
   end
 
+  def unredeemed_items
+    # authorize @basket_item
+    @donation_type = DonationType.find(params["items_redeemed"]["donation_type"])
+    @item = BasketItem.includes(:basket, :donation_type).where(redeemed: false, baskets: { state: 'paid' }, donation_type: @donation_type).first
+    @item.redeemed = true
+    # raise
+    @item.save!
+  end
+
   def destroy
     @basket_item = BasketItem.find(params[:basket_id])
     authorize @basket_item
@@ -35,9 +44,5 @@ class BasketItemsController < ApplicationController
 
   def basket_item_params
     params.require(:basket_item).permit(:basket_id, :donation_type_id)
-  end
-
-  def guest_token
-    session[:basket_id] ||= SecureRandom.uuid
   end
 end
