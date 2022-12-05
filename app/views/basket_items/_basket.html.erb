@@ -3,5 +3,9 @@
   <% @basket.basket_items.each do |item| %>
     <% price << item.donation_type.price %>
   <% end %>
-  <%= @basket.basket_items.count %> - <%= link_to "View Basket", basket_path(@basket) %> - <%= price.sum %>
-</div>
+    <div class = "basket-idex-container">
+      <div class = "circle"> <%= @basket.basket_items.count %> </div>
+      <%= link_to basket_path(@basket) do %>
+      <%= image_tag "shopping-basket.png", class: "nav-bar-icon-images"%> <% end %>
+    </div>
+  </div>

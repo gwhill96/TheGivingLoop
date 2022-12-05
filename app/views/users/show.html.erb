@@ -1,5 +1,6 @@
 <div class="card_container">
   <img src="<%= image_path('THE GIVING LOOP (4).png') %>">
+
     <div class="my_profile_title"> <h1>Your Profile</h1> </div>
     <h2>Past Donations</h2>
 
@@ -15,9 +16,7 @@
     </div>
 
 <div class="my_profile_button_container">
-  <button type="button" class="btn-edit-orange-rounded" data-bs-toggle="modal" data-bs-target="#editModal">
-  Edit Profile
-</button>
+  <div class="btn-edit-orange-rounded" data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</div>
 <div class="modal custom fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style="background: #8EB8E5;" >
@@ -62,4 +61,3 @@
 </div>
 
 </div>
-  <%= link_to "Sign Out", destroy_user_session_path, 'data-turbo-method': :delete, class: "btn-edit-orange-rounded" %>
