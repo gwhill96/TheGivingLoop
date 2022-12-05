@@ -29,24 +29,9 @@
     </div>
   <% end %>
 </div>
-
-<%# --old basket at bottom of page-- %>
-
-    <%# <div class="basket">
-      <% if current_user.nil? %>
-        <%# <div data-controller="basket-subscription cl"
-          data-basket-subscription-basket-id-value="<%= @basket.id %>
-            <%# <div data-basket-subscription-target="basket">
-              <%= render "basket_items/basket", basket: @basket %>
-            <%# </div> %>
-      <%# <% elsif !current_user.charity %>
-        <%# <div data-controller="basket-subscription"
-          data-basket-subscription-basket-id-value="<%= @basket.id %>
-            <%# <div data-basket-subscription-target="basket">
-              <%= render "basket_items/basket", basket: @basket %>
-
             </div>
-      <% elsif current_user.charity %>
+
+      <% if !@user.nil? && @user.charity %>
         <% price = [] %>
         <h1>Donation Inventory</h1>
         <% @unredeeemed_donations.each do |item| %>
@@ -58,8 +43,6 @@
           <%= f.input :donation_type, :collection => DonationType.order(:name), :prompt => "Choose a Donation To Redeem" %>
           <%= f.submit "Redeem Donation", class: "btn-orange-rounded" %>
         <% end %>
-            <%# </div> %>
-      <%# <% elsif current_user.charity %>
-        <%# <h1>Welcome to the charity page</h1>
-      <% end %>
-    <%# </div> %>
+        <% end %>
+      </div>
+    </div>
