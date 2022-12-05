@@ -43,4 +43,7 @@ a:hover, a:visited, a:link, a:active {
   &:focus{
     background-color: #ed6623;
   }
+  &:active{
+    background-color: #ed6623;
+}
 }

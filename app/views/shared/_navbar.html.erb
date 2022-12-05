@@ -72,8 +72,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= link_to "My Profile", user_path(current_user), class: "btn btn-primary" %>
-        <%= link_to "Sign Out", destroy_user_session_path, 'data-turbo-method': :delete, class: "btn btn-primary", style:"background-color: #EA5455;" %>
+        <%= link_to "My Profile", user_path(current_user), class: "btn-orange-rounded" %>
+        <%= link_to "Sign Out", destroy_user_session_path, 'data-turbo-method': :delete, class: "btn-orange-rounded", style:"background-color: #EA5455;" %>
       </div>
     </div>
   </div>
@@ -88,8 +88,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
-          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
+          <%= link_to "Login", new_user_session_path, class: "btn-orange-rounded" %>
+          <%= link_to "Create Account", new_user_registration_path, class: "btn-orange-rounded" %>
         </div>
         </div>
       </div>
