@@ -22,7 +22,7 @@
 
   <div class="b-button-container">
     <% if current_user.nil? %>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#guestModal">Guest Checkout</button>
+    <div class="btn-orange-rounded" data-bs-toggle="modal" data-bs-target="#guestModal">Guest Checkout</div>
     <div class="modal custom fade" id="guestModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content" style="background: #8EB8E5;" >
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">Create an account</div>
+    <div class="btn-orange-rounded" data-bs-toggle="modal" data-bs-target="#createModal">Create Account</div>
     <div class="modal custom fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content" style="background: #8EB8E5;" >
