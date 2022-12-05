@@ -1,22 +1,27 @@
 <div class="navbar fixed-bottom navbar-expand-sm navbar-gl" >
-    <% if user_signed_in? %>
+<!-- User Navbar - Signed In -->
+    <% if user_signed_in? && !current_user.charity %>
       <%= link_to root_path(@root) do %>
         <li class="nav-item">
           <%= image_tag "HomeIcon.png", class: "nav-bar-icon-images" %>
         </li>
       <% end %>
-      <%= link_to about_path(about_path) do %>
-        <li class="nav-item">
-          <%= image_tag "InfoIcon.png", class: "nav-bar-icon-images" %>
-        </li>
-      <% end %>
+
+      <div data-controller="basket-subscription"
+        data-basket-subscription-basket-id-value="<%= @basket.id %>">
+        <div data-basket-subscription-target="basket">
+        <%= render "basket_items/basket", basket: @basket %>
+        </div>
+      </div>
 
       <div data-bs-toggle="modal" data-bs-target="#exampleModal">
         <li class="nav-item">
           <%= image_tag "UserIcon.png", class: "nav-bar-icon-images" %>
         </li>
       </div>
-    <% else %>
+
+<!-- Charity Navbar - Signed In -->
+    <% elsif user_signed_in? && current_user.charity%>
       <%= link_to root_path(@root) do %>
         <li class="nav-item">
           <%= image_tag "HomeIcon.png", class: "nav-bar-icon-images" %>
@@ -26,7 +31,29 @@
         <li class="nav-item">
           <%= image_tag "InfoIcon.png", class: "nav-bar-icon-images" %>
         </li>
-       <% end %>
+      <% end %>
+<
+      <div data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <li class="nav-item">
+          <%= image_tag "UserIcon.png", class: "nav-bar-icon-images" %>
+        </li>
+      </div>
+
+      <h1>Welcome to the charity page</h1>
+<!-- User Navbar - Signed Out -->
+    <% else %>
+      <%= link_to root_path(@root) do %>
+        <li class="nav-item">
+          <%= image_tag "HomeIcon.png", class: "nav-bar-icon-images" %>
+        </li>
+      <% end %>
+      <div data-controller="basket-subscription cl"
+        data-basket-subscription-basket-id-value="<%= @basket.id %>">
+        <div data-basket-subscription-target="basket">
+            <%= render "basket_items/basket", basket: @basket %>
+        </div>
+      </div>
+
       <div data-bs-toggle="modal" data-bs-target="#exampleModal">
         <li class="nav-item">
           <%= image_tag "UserIcon.png", class: "nav-bar-icon-images" %>
@@ -34,7 +61,6 @@
       </div>
     <% end %>
 </div>
-
 <!-- Modal -->
 
 <% if current_user %>
