@@ -1,24 +1,24 @@
-<div class="checkcont">
+<div class="card_container">
   <img src="<%= image_path('THE GIVING LOOP (4).png') %>">
-  <div class="row py-4>">
-    <div class="col">
+    <br>
+    <div>
       <h1><strong>Your Donations</strong></h1>
-      <hr>
+      <br>
+        <hr>
           <ul style="list-style: none; font: size 20px;">
-            <% @basket.basket_items.each do |item| %>
+          <% @basket.basket_items.each do |item| %>
               <li>
-            <div class="citems">
-              <div><%= item.donation_type.name %></div>
-              <div>£<%= item.donation_type.price %>
-              <%= link_to "🗑", basket_basket_item_path(item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-              </div>
-            </div>
-              </li>
+                <div class="citems">
+                  <div><%= item.donation_type.name %></div>
+                    <div>£<%= item.donation_type.price %>
+                    <%= link_to "🗑", basket_basket_item_path(item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                    </div>
+                  </div>
+                </li>
             <%end %>
           </ul>
+        <hr>
       </div>
-    </div>
-  <hr>
 
   <div class="b-button-container">
     <% if current_user.nil? %>
