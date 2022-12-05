@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :baskets, only: %i[show update create] do
     resources :payments, only: %i[new show]
-    resources :basket_items, only: %i[create update]
+    resources :basket_items, only: %i[create update destroy]
     # get :checkout, on: :member
   end
   get "/basket_items/unredeemed_items", to: "basket_items#unredeemed_items", as: "unredeemed_items"
