@@ -2,16 +2,14 @@
   display: flex;
   justify-content: space-between;
 }
-
 .b-button-container {
-  display: flex;
   justify-content: center;
   padding: 5px;
-  width: 80%;
   border-radius: 15px;
   margin: 15px;
+  display: flex;
+  gap: 20px;
 }
-
 // .f-card {
 //   margin-top: 20px;
 //   background-color: #29415B;
@@ -25,7 +23,6 @@
 //   border-radius: 15px;
 //   margin: 15px;
 // }
-
 .btn {
   color: white;
   width: 100%;
@@ -33,6 +30,7 @@
   background: #F07B3F;
   border-color: #F07B3F;
   box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+  border-style: none !important;
   &:hover{
     background-color:#ed6623
   }

@@ -1,3 +1,80 @@
 <h1>Edit My Profile</h1>
 
+<div class="navbar fixed-bottom navbar-expand-sm navbar-gl" >
+    <% if user_signed_in? %>
+      <%= link_to root_path(@root) do %>
+        <li class="nav-item">
+          <%= image_tag "HomeIcon.png", class: "nav-bar-icon-images" %>
+        </li>
+      <% end %>
+      <%= link_to about_path(about_path) do %>
+        <li class="nav-item">
+          <%= image_tag "InfoIcon.png", class: "nav-bar-icon-images" %>
+        </li>
+      <% end %>
 
+      <div data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <li class="nav-item">
+          <%= image_tag "UserIcon.png", class: "nav-bar-icon-images" %>
+        </li>
+      </div>
+    <% else %>
+      <%= link_to root_path(@root) do %>
+        <li class="nav-item">
+          <%= image_tag "HomeIcon.png", class: "nav-bar-icon-images" %>
+        </li>
+      <% end %>
+      <%= link_to about_path(about_path) do %>
+        <li class="nav-item">
+          <%= image_tag "InfoIcon.png", class: "nav-bar-icon-images" %>
+        </li>
+       <% end %>
+      <div data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <li class="nav-item">
+          <%= image_tag "UserIcon.png", class: "nav-bar-icon-images" %>
+        </li>
+      </div>
+    <% end %>
+</div>
+
+<!-- Modal -->
+
+<% if current_user %>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= link_to "My Profile", user_path(current_user), class: "btn btn-primary" %>
+        <%= link_to "Past Donations", user_path(current_user), class: "btn btn-primary" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% else %>
+<% if current_user.nil? %>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= link_to "Login", user_path(current_user), class: "btn btn-primary" %>
+        <%= link_to "Past Donations", user_path(current_user), class: "btn btn-primary" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+<% end %>
