@@ -1,17 +1,15 @@
 .modal-content {
   border-radius: 10px;
 }
-
-
-
 .modal-title {
   color: white;
 }
-
 .modal-body {
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-
 .modal-body .btn {
   color: white;
   width: 100%;
@@ -26,13 +24,13 @@
     background-color: #ed6623;
   }
 }
-
 .modal-footer .btn {
   width: 100%;
   margin-bottom: 20px;
   background: #F07B3F;
   border-color: #F07B3F;
   box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+  border-style: none !important;
   &:hover{
     background-color:#ed6623
   }
