@@ -1,0 +1,23 @@
+.doncard {
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.donimg {
+  width: 150px;
+  height: 150px;
+  padding: 20px;
+}
+
+.doncard h4 {
+  padding: 16px;
+  margin-top: 5px;
+}
+
+.doncard p {
+  padding: 16px;
+}

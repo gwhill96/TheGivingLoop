@@ -1,11 +1,19 @@
 <div class="card_container">
   <img src="<%= image_path('THE GIVING LOOP (4).png') %>">
     <div class="my_profile_title"> <h1>Your Profile</h1> </div>
-    <br>
     <h2>Past Donations</h2>
 
+      <% items = BasketItem.includes(:basket, :donation_type).where(baskets: {user_id: current_user}).where(baskets: { state: 'paid' })%>
+      <% items.each do |item| %>
+        <li>
+      <div class="doncard">
+         <img class="donimg" src="<%= image_path('hot_meal_card.png') %>" alt="">
+            <h4><div><%= item.donation_type.name %></div></h4>
+            <p><div>£<%= item.donation_type.price %></div></p>
+      <% end %>
+        </li>
+    </div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div class="my_profile_button_container">
   <button type="button" class="btn-edit-orange-rounded" data-bs-toggle="modal" data-bs-target="#editModal">
   Edit Profile
@@ -31,7 +39,7 @@
              <%= f.input :phone_number,
                         hint: "leave it blank if you don't want to change it",
                         required: false,
-                        input_html: { autocomplete: "new-phone-number" } %>
+                        input_html: { autocomplete: "new-phone-number" }, class: %>
             <%= f.input :password,
                         hint: "leave it blank if you don't want to change it",
                         required: false,
