@@ -1,5 +1,6 @@
-<div id="basket-<%= @basket.id %>">
+<div id="basket-<%= session[:basket_id] %>">
   <% price = [] %>
+  <% @basket = Basket.find(session[:basket_id])%>
   <% @basket.basket_items.each do |item| %>
     <% price << item.donation_type.price %>
   <% end %>

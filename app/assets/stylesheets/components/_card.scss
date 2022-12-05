@@ -8,9 +8,7 @@
   align-content: space-between;
   position: relative;
 }
-
-
-.card-front {
+.card {
   margin-top: 10px;
   height: 200px;
   width: 80%;
@@ -20,7 +18,13 @@
   border-radius: 10px;
   background-image: url("hot_meal_card.png");
   background-size: cover;
+  transition: transform 0.5s;
 }
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
 .card-title {
   position: absolute;
   bottom: 5px;
