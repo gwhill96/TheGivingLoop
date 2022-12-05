@@ -8,6 +8,8 @@
   padding: 8px 5px;
   width: fit-content;
   border-style: none !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 .btn-orange-rounded:hover {
   color: white;
@@ -20,6 +22,7 @@
   background: #F07B3F;
   padding: 8px 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
 .btn-orange-square:hover {
   color: white;

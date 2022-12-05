@@ -10,10 +10,8 @@
             <div class="citems">
               <div><%= item.donation_type.name %></div>
               <div>£<%= item.donation_type.price %>
-                <%= link_to "🗑",
-                basket_basket_item_path(item),
-                    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-                %></div>
+              <%= link_to "🗑", basket_basket_item_path(item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+              </div>
             </div>
               </li>
             <%end %>
@@ -86,6 +84,6 @@
     <% elsif !current_user.charity %>
           <%= form_with url: baskets_path do %>
           <%= hidden_field_tag 'basket_id', @basket.id %>
-          <%= submit_tag 'Checkout', class: 'btn-orange-rounded' %>
+          <%= submit_tag 'View Final Donation', class: 'btn-orange-rounded', style:"width: 300px" %>
         <% end %>
       <% end %>
