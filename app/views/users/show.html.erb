@@ -1,14 +1,63 @@
 <div class="card_container">
   <img src="<%= image_path('THE GIVING LOOP (4).png') %>">
+
     <div class="my_profile_title"> <h1>Your Profile</h1> </div>
-    <br>
     <h2>Past Donations</h2>
 
+      <% items = BasketItem.includes(:basket, :donation_type).where(baskets: {user_id: current_user}).where(baskets: { state: 'paid' })%>
+      <% items.each do |item| %>
+        <li>
+      <div class="doncard">
+         <img class="donimg" src="<%= image_path('hot_meal_card.png') %>" alt="">
+            <h4><div><%= item.donation_type.name %></div></h4>
+            <p><div>£<%= item.donation_type.price %></div></p>
+      <% end %>
+        </li>
+    </div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div class="my_profile_button_container">
-  <%= link_to "Edit Profile", edit_user_path(@user), class: "btn-edit-orange-rounded" %>
-  <%= link_to "Sign Out", destroy_user_session_path, 'data-turbo-method': :delete, class: "btn-edit-orange-rounded" %>
+  <div class="btn-edit-orange-rounded" data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</div>
+<div class="modal custom fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background: #8EB8E5;" >
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Profile</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
+
+          <div class="form-inputs">
+            <%= f.input :email, required: true, autofocus: true %>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+            <% end %>
+
+             <%= f.input :phone_number,
+                        hint: "leave it blank if you don't want to change it",
+                        required: false,
+                        input_html: { autocomplete: "new-phone-number" }, class: %>
+            <%= f.input :password,
+                        hint: "leave it blank if you don't want to change it",
+                        required: false,
+                        input_html: { autocomplete: "new-password" } %>
+            <%= f.input :password_confirmation,
+                        required: false,
+                        input_html: { autocomplete: "new-password" } %>
+            <%= f.input :current_password,
+                        hint: "we need your current password to confirm your changes",
+                        required: true,
+                        input_html: { autocomplete: "current-password" } %>
+          </div>
+
+          <div class="form-actions">
+           <%= f.button :submit, "Update", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+  </div>
+</div>
 </div>
 
 </div>

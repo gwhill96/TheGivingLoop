@@ -1,3 +1,8 @@
+.basket-idex-container{
+  display: flex;
+  justify-content: center;
+}
+
 .basket {
   background-color: #8EB8E5;
   padding: 10px;
@@ -6,4 +11,20 @@
   position: sticky;
   bottom: 100px;
   text-align: center;
+}
+
+
+.circle {
+  width:25px;
+  height:25px;
+  border-radius:50px;
+  font-size:14px;
+  color:#fff;
+  font-weight:bold;
+  line-height:25px;
+  text-align:center;
+  background:#EA5455;
+  position: absolute;
+  top: 20px;
+  left: 650px;
 }

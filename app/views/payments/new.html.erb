@@ -3,7 +3,6 @@
     <div class="row py-4">
       <div class="col">
         <h1><strong>Order Summary</strong></h1>
-        <h4>Order Number: <%= @order.id %></h4>
         <hr>
         <p>Purchase of :</p>
         <% @order.basket_items.each do |item| %>
@@ -16,7 +15,7 @@
         <% end %>
         <hr>
         <p>Total Amount: <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
-        <button id="pay" class="btn btn-primary">Pay</button>
+        <button id="pay" class="btn-orange-rounded" style="width: 40%;">Pay</button>
         <script src="https://js.stripe.com/v3/"></script>
         <script>
           const paymentButton = document.getElementById('pay');
