@@ -2,7 +2,7 @@
     <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%>
     </div>
     <div class = "info-icon" >
-      <%= link_to about_path(about_path) do %>
+      <%= link_to about_path do %>
       <%= image_tag "InfoIcon.png", style:"margin-top: 5px; margin-right: 5px;", class: "nav-bar-icon-images"%>
       <% end %>
     </div>
@@ -11,23 +11,26 @@
 
 
 <div class="card_container">
-  <% @donationtypes.each do |donationtype| %>
-    <div class="card-front">
-      <li class="card-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
+    <% @donationtypes.each do |donationtype| %>
+      <div class="card" onclick="this.classList.toggle('flipped')">
+      <div class="front">
+        <li class="card-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
 
-      <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@charity_profile.id, donationtype.id) if !@user.nil? && @user.charity? && donationtype.charity_profile.user_id == @user.id %>
+        <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@charity_profile.id, donationtype.id) if !@user.nil? && @user.charity? && donationtype.charity_profile.user_id == @user.id %>
 
-      <%= simple_form_for [ @basket, @basket_item ] do |f| %>
-        <%= f.hidden_field :donation_type_id, value: donationtype.id %>
-        <div class="card-button">
-        <%= f.submit "Add To Basket", class: "btn-orange-rounded" %>
-        </div>
-      <% end %>
+        <%= simple_form_for [ @basket, @basket_item ] do |f| %>
+          <%= f.hidden_field :donation_type_id, value: donationtype.id %>
+          <div class="card-button">
+          <%= f.submit "Add To Basket", class: "btn-orange-rounded" %>
+          </div>
+          </div>
+        <% end %>
+  <div class="back">Back of card</div>
     </div>
   <% end %>
 </div>
 
-<%# -- old basket at bottom of page --  %>
+<%# --old basket at bottom of page-- %>
 
     <%# <div class="basket">
       <% if current_user.nil? %>
