@@ -1,36 +1,48 @@
-<div class="card_container">
-
-  <h1 class="page-title">The Giving Loop</h1>
-
-    <% @donationtypes.each do |donationtype| %>
-      <div class="card">
-        <li class="card-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
-
-        <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@charity_profile.id, donationtype.id) if !@user.nil? && @user.charity? && donationtype.charity_profile.user_id == @user.id %>
-
-        <%= simple_form_for [ @basket, @basket_item ] do |f| %>
-          <%= f.hidden_field :donation_type_id, value: donationtype.id %>
-          <div class="card-button">
-          <%= f.submit "Add To Basket", class: "btn-orange-rounded" %>
-          </div>
-        <% end %>
+<div class = "header-section">
+    <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%>
     </div>
-  <% end %>
-    <div class="basket">
-      <% if current_user.nil? %>
-        <div data-controller="basket-subscription cl"
-          data-basket-subscription-basket-id-value="<%= @basket.id %>">
-            <div data-basket-subscription-target="basket">
-              <%= render "basket_items/basket", basket: @basket %>
-            </div>
-      <% elsif !current_user.charity %>
-        <div data-controller="basket-subscription"
-          data-basket-subscription-basket-id-value="<%= @basket.id %>">
-            <div data-basket-subscription-target="basket">
-              <%= render "basket_items/basket", basket: @basket %>
-            </div>
-      <% elsif current_user.charity %>
-        <h1>Welcome to the charity page</h1>
+    <div class = "info-icon" >
+      <%= link_to about_path(about_path) do %>
+      <%= image_tag "InfoIcon.png", style:"margin-top: 5px; margin-right: 5px;", class: "nav-bar-icon-images"%>
       <% end %>
     </div>
+    <h1 class="page-title">The Giving Loop</h1>
+  </div>
+
+
+<div class="card_container">
+  <% @donationtypes.each do |donationtype| %>
+    <div class="card-front">
+      <li class="card-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
+
+      <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@charity_profile.id, donationtype.id) if !@user.nil? && @user.charity? && donationtype.charity_profile.user_id == @user.id %>
+
+      <%= simple_form_for [ @basket, @basket_item ] do |f| %>
+        <%= f.hidden_field :donation_type_id, value: donationtype.id %>
+        <div class="card-button">
+        <%= f.submit "Add To Basket", class: "btn-orange-rounded" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
+
+<%# -- old basket at bottom of page --  %>
+
+    <%# <div class="basket">
+      <% if current_user.nil? %>
+        <%# <div data-controller="basket-subscription cl"
+          data-basket-subscription-basket-id-value="<%= @basket.id %>
+            <%# <div data-basket-subscription-target="basket">
+              <%= render "basket_items/basket", basket: @basket %>
+            <%# </div> %>
+      <%# <% elsif !current_user.charity %>
+        <%# <div data-controller="basket-subscription"
+          data-basket-subscription-basket-id-value="<%= @basket.id %>
+            <%# <div data-basket-subscription-target="basket">
+              <%= render "basket_items/basket", basket: @basket %>
+            <%# </div> %>
+      <%# <% elsif current_user.charity %>
+        <%# <h1>Welcome to the charity page</h1>
+      <% end %>
+    <%# </div> %>
