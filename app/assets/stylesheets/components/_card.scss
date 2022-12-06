@@ -38,14 +38,25 @@
 }
 
 .card-front {
-  background-image: url("hot_meal_card.png");
-  background-size: cover;
+  // background-image: url("hot_meal_card.png");
+  // background-size: cover;
+  height: 100%;
+  width: 100%;
+  img {
+    object-fit: cover;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .card-back {
-  background-color: #333;
+  background-color: #2D4059;
+  color: white;
   transform: rotateY(180deg);
-}
+  text-align: center;
+  align-items: center;
+  }
 
 .card-title {
   position: absolute;
