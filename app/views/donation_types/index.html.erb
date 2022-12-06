@@ -13,7 +13,7 @@
     <div class="flip-card" onclick="this.classList.toggle('flipped')">
       <div class="card-inner">
         <div class="card-front">
-        <%# style="background-image: url('<%=donationtype.image%');" %>
+          <%# style="background-image: url('<%=donationtype.image%');" %>
           <li class="card-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
 
           <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@charity_profile.id, donationtype.id) if !@user.nil? && @user.charity? && donationtype.charity_profile.user_id == @user.id %>
@@ -25,13 +25,9 @@
             </div>
           <% end %>
         </div>
-
         <div class="card-back">Back of card</div>
       </div>
     </div>
-      <% end %>
-    <div class="back">Back of card</div>
-  </div>
   <% end %>
 </div>
 
