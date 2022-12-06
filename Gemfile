@@ -45,8 +45,6 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
-gem "webpacker"
-
 # below are money handling gems:
 gem 'money-rails'
 gem 'stripe'
