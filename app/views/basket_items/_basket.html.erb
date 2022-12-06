@@ -1,12 +1,20 @@
-<div id="basket-<%= session[:basket_id] %>">
-  <% price = [] %>
-  <% @basket = Basket.find(session[:basket_id])%>
-  <% @basket.basket_items.each do |item| %>
-    <% price << item.donation_type.price %>
-  <% end %>
-    <div class = "basket-idex-container">
-      <div class = "circle"> <%= @basket.basket_items.count %> </div>
-      <%= link_to basket_path(@basket) do %>
-      <%= image_tag "shopping-basket.png", class: "nav-bar-icon-images"%> <% end %>
-    </div>
+<% if !session[:basket_id].nil? %>
+  <div id="basket-<%= session[:basket_id] %>">
+    <% price = [] %>
+    <% @basket = Basket.find(session[:basket_id])%>
+    <% @basket.basket_items.each do |item| %>
+      <% price << item.donation_type.price %>
+    <% end %>
+      <div class = "basket-idex-container">
+        <div class = "circle"> <%= @basket.basket_items.count %> </div>
+        <%= link_to basket_path(@basket) do %>
+        <%= image_tag "shopping-basket.png", class: "nav-bar-icon-images"%> <% end %>
+      </div>
   </div>
+<% else %>
+  <div class = "basket-idex-container">
+    <div class = "circle"> 0 </div>
+      <%= link_to root_path do %>
+      <%= image_tag "shopping-basket.png", class: "nav-bar-icon-images"%> <% end %>
+  </div>
+<% end %>

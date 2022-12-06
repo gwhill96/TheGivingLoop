@@ -1,7 +1,6 @@
 <div class = "header-section">
-  <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%>
-  </div>
-  <div class="info-icon" >
+  <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%></div>
+  <div class = "info-icon" >
     <%= link_to about_path do %>
     <%= image_tag "InfoIcon.png", style:"margin-top: 5px; margin-right: 5px;", class: "nav-bar-icon-images"%>
     <% end %>
@@ -30,19 +29,24 @@
         <div class="card-back">Back of card</div>
       </div>
     </div>
+      <% end %>
+    <div class="back">Back of card</div>
+  </div>
   <% end %>
 </div>
 
-<% if !@user.nil? && @user.charity %>
-  <% price = [] %>
-  <h1>Donation Inventory</h1>
-  <% @unredeeemed_donations.each do |item| %>
-    <% price << item.donation_type.price %>
+<div class="card_container">
+  <% if !@user.nil? && @user.charity %>
+    <% price = [] %>
+    <h1>Donation Inventory</h1>
+    <% @unredeeemed_donations.each do |item| %>
+      <% price << item.donation_type.price %>
+    <% end %>
+    <p>Unredeemed Donations: <%= @unredeeemed_donations.count %></p>
+    <p>Total Amount: <%= price.sum %></p>
+    <%= simple_form_for :items_redeemed, url: unredeemed_items_path, method: :get do |f| %>
+      <%= f.input :donation_type, :collection => DonationType.order(:name), :prompt => "Choose a Donation To Redeem" %>
+      <%= f.submit "Redeem Donation", class: "btn-orange-rounded" %>
+    <% end %>
   <% end %>
-  <p>Unredeemed Donations: <%= @unredeeemed_donations.count %></p>
-  <p>Total Amount: <%= price.sum %></p>
-  <%= simple_form_for :items_redeemed, url: unredeemed_items_path, method: :get do |f| %>
-    <%= f.input :donation_type, :collection => DonationType.order(:name), :prompt => "Choose a Donation To Redeem" %>
-    <%= f.submit "Redeem Donation", class: "btn-orange-rounded" %>
-  <% end %>
-<% end %>
+</div>
