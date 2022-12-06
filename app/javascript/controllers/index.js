@@ -9,4 +9,3 @@ application.register("basket-subscription", BasketSubscriptionController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
-

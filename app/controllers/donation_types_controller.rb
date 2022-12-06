@@ -2,6 +2,7 @@ class DonationTypesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
+    # raise
     # THIS IS THE CODE WHERE THE BASKET IS BEING INSTANTIATED - NOT IN BASKET CONTROLLER
     if current_user.nil? || !current_user.charity
       @donationtypes = DonationType.all
