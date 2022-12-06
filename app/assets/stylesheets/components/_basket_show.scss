@@ -1,10 +1,37 @@
-.citems {
+.bitems {
   display: flex;
   justify-content: space-between;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 5px;
+  align-items: center;
+  border-radius: 5px;
 }
+
+.bimg {
+  width: 75px;
+  height: 75px;
+}
+
+.btext {
+  text-align: center;
+  margin: 15px;
+}
+
+.bicon {
+  font-size: 25px;
+  margin: 15px;
+}
+
+.fa-trash-can:hover  {
+  color:red !important;
+
+}
+
 a {
   text-decoration: none;
 }
+
 a:hover, a:visited, a:link, a:active {
   text-decoration: none;
 }
@@ -16,19 +43,7 @@ a:hover, a:visited, a:link, a:active {
   display: flex;
   gap: 20px;
 }
-// .f-card {
-//   margin-top: 20px;
-//   background-color: #29415B;
-//   padding: 5px;
-//   border-radius: 25px;
-// }
 
-// .f-card-in {
-//   background-color: white;
-//   padding: 10px;
-//   border-radius: 15px;
-//   margin: 15px;
-// }
 .btn {
   color: white;
   width: 100%;

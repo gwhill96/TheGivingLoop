@@ -1,17 +1,20 @@
-<div class="card_container">
+<div class="checkcont">
   <img src="<%= image_path('THE GIVING LOOP (4).png') %>">
     <br>
     <div>
       <h1><strong>Your Donations</strong></h1>
       <br>
+       <h5><strong>Update your cart or proceed to checkout</strong></h5>
         <hr>
           <ul style="list-style: none; font: size 20px;">
           <% @basket.basket_items.each do |item| %>
               <li>
-                <div class="citems">
-                  <div><%= item.donation_type.name %></div>
-                    <div>£<%= item.donation_type.price %>
-                    <%= link_to "🗑", basket_basket_item_path(item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                <div class="bitems">
+                  <img class="bimg" src="<%= image_path('hot_meal_card.png') %>">
+                  <div class="btext"><%= item.donation_type.name %> - £<%= item.donation_type.price %></div>
+                    <div class="bicon"><%= link_to basket_basket_item_path(item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, style: "color: black; margin: left;"  do %>
+                    <i class="fa-regular fa-trash-can"></i>
+                    <% end %>
                     </div>
                   </div>
                 </li>
@@ -92,6 +95,3 @@
 
 
     <% end %>
-
-
-
