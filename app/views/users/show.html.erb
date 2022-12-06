@@ -1,19 +1,29 @@
 <div class="checkcont">
   <img src="<%= image_path('THE GIVING LOOP (4).png') %>">
 
-    <div class="my_profile_title"> <h1>Your Profile</h1> </div>
-    <h2>Past Donations</h2>
+    <div class="my_profile_title"> <h1>Your Profile</h1>
+    <% if !@user.charity  %>
+      <h2>Past Donations</h2></div>
 
-      <% items = BasketItem.includes(:basket, :donation_type).where(baskets: {user_id: current_user}).where(baskets: { state: 'paid' })%>
-      <% items.each do |item| %>
-        <li>
-      <div class="doncard">
-         <img class="donimg" src="<%= image_path('hot_meal_card.png') %>" alt="">
-            <h4><div><%= item.donation_type.name %></div></h4>
-            <p><div>£<%= item.donation_type.price %></div></p>
+        <% items = BasketItem.includes(:basket, :donation_type).where(baskets: {user_id: current_user}).where(baskets: { state: 'paid' })%>
+        <% items.each do |item| %>
+          <div class="doncard">
+            <img class="donimg" src="<%= image_path('hot_meal_card.png') %>" alt="">
+              <h4><%= item.donation_type.name %></h4>
+              <p>£<%= item.donation_type.price %></p>
+          </div>
+        <% end %>
+    <% else %>
+      <h3>Donations added by you:</h3></div>
+      <% @user.charity_profile.donation_types.each do |donation| %>
+        <div class="doncard">
+          <img class="donimg" src="<%= image_path('hot_meal_card.png') %>" alt="">
+          <h4><%= donation.name %></h4>
+          <p>£<%= donation.price %></p>
+        </div>
       <% end %>
-        </li>
-    </div>
+    <% end %>
+</div>
 
 <div class="my_profile_button_container">
   <div class="btn-edit-orange-rounded" data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</div>

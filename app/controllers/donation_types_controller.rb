@@ -2,15 +2,14 @@ class DonationTypesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    # raise
     # THIS IS THE CODE WHERE THE BASKET IS BEING INSTANTIATED - NOT IN BASKET CONTROLLER
+    @donationtypes = DonationType.all
+    @basket_item = BasketItem.new
+    @charity_profile = CharityProfile.find(@user.id) if !@user.nil? && @user.charity
+    basket_id = session[:basket_id]
+    @unredeeemed_donations = BasketItem.includes(:basket, :donation_type).where(redeemed: false, baskets: { state: 'paid' })
+    @basket = Basket.find_by(id: basket_id)
     if current_user.nil? || !current_user.charity
-      @donationtypes = DonationType.all
-      @basket_item = BasketItem.new
-      basket_id = session[:basket_id]
-      @basket = Basket.find_by(id: basket_id)
-      # Code line below is needed for page to work, but wont be called on unless user is a charity profile.
-      @unredeeemed_donations = BasketItem.includes(:basket, :donation_type).where(redeemed: false, baskets: { state: 'paid' })
       @user = current_user unless current_user.nil?
       if @basket.nil?
         @basket = Basket.new
@@ -19,18 +18,12 @@ class DonationTypesController < ApplicationController
       end
     else
       @user = current_user
-      @donationtypes = DonationType.where(charity_profile_id: @user.id)
-      @unredeeemed_donations = BasketItem.includes(:basket, :donation_type).where(redeemed: false, baskets: { state: 'paid' })
-      @basket_item = BasketItem.new
-      basket_id = session[:basket_id]
-      @basket = Basket.find_by(id: basket_id)
       if @basket.nil?
         @basket = Basket.new
         @basket.user = @user
         session[:basket_id] = @basket.id if @basket.save
       end
     end
-    @charity_profile = CharityProfile.find(@user.id) if !@user.nil? && @user.charity
   end
 
   # def show

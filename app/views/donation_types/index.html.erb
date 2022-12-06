@@ -8,17 +8,14 @@
   <h1 class="page-title">The Giving Loop</h1>
   <p class="body-text">Closing the feedback loop on charitable donations</p>
 </div>
-
-<div class="card-container">
+<% if @user.nil? || !@user.charity %>
+  <div class="card-container">
   <% @donationtypes.each do |donationtype| %>
     <div class="flip-card" onclick="this.classList.toggle('flipped')">
       <div class="card-inner">
         <div class="card-front">
         <%= image_tag donationtype.photo_url %>
           <li class="card-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
-
-          <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@charity_profile.id, donationtype.id) if !@user.nil? && @user.charity? && donationtype.charity_profile.user_id == @user.id %>
-
           <%= simple_form_for [ @basket, @basket_item ] do |f| %>
             <%= f.hidden_field :donation_type_id, value: donationtype.id %>
             <div class="card-button">
@@ -28,21 +25,25 @@
         </div>
         <div class="card-back"><%= donationtype.bio %></div>
       </div>
-    </div>
-  <% end %>
-</div>
-
-<div class="invent">
-  <% if !@user.nil? && @user.charity %>
+    <% end %>
+  </div>
+<% end %>
+<% if !@user.nil? && @user.charity %>
+  <div class="invent">
     <% price = [] %>
-    <h1>Donation Inventory</h1>
+    <h1>Welcome <%= @user.first_name %>,</h1>
+    <br>
+    <h2>Donation Inventory</h2>
     <% @unredeeemed_donations.each do |item| %>
       <% price << item.donation_type.price %>
     <% end %>
-    <p>Unredeemed Donations: <%= @unredeeemed_donations.count %> - Total Amount: <%= price.sum %></p>
+    <h5>Unredeemed Donations: <b><%= @unredeeemed_donations.count %></b></h5>
+    <h5>Total Amount: <b>£<%= price.sum %></b></h5>
+    <br>
+    <p>Please select which donation you'd like to redeem from the dropdown below</p>
     <%= simple_form_for :items_redeemed, url: unredeemed_items_path, method: :get do |f| %>
-      <%= f.input :donation_type, :collection => DonationType.order(:name), :prompt => "Choose a Donation To Redeem" %>
+      <%= f.input :donation_type, :collection => DonationType.order(:name), :prompt => "Choose a Donation To Redeem", label: false %>
       <%= f.submit "Redeem Donation", class: "btn-orange-rounded" %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>

@@ -3,21 +3,32 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
+  justify-content: space-between;
   align-items: center;
   border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  color: #2D4059;
 }
 
 .donimg {
-  width: 150px;
-  height: 150px;
-  padding: 20px;
+  width: 100px;
+  height: 100%;
+  // padding: 20px;
 }
 
 .doncard h4 {
   padding: 16px;
-  margin-top: 5px;
+  margin-bottom: 0px;
+  // margin-top: 5px;
 }
 
 .doncard p {
   padding: 16px;
+  margin-bottom: 0px
+}
+
+.doncard h3 {
+  color: #2D4059;
 }
