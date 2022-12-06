@@ -1,48 +1,48 @@
 <div class = "header-section">
-    <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%>
-    </div>
-    <div class = "info-icon" >
-      <%= link_to about_path do %>
-      <%= image_tag "InfoIcon.png", style:"margin-top: 5px; margin-right: 5px;", class: "nav-bar-icon-images"%>
-      <% end %>
-    </div>
-    <h1 class="page-title">The Giving Loop</h1>
+  <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%>
   </div>
+  <div class="info-icon" >
+    <%= link_to about_path do %>
+    <%= image_tag "InfoIcon.png", style:"margin-top: 5px; margin-right: 5px;", class: "nav-bar-icon-images"%>
+    <% end %>
+  </div>
+  <h1 class="page-title">The Giving Loop</h1>
+</div>
 
+<div class="card-container">
+  <% @donationtypes.each do |donationtype| %>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+        <%# style="background-image: url('<%=donationtype.image%');" %>
+          <li class="card-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
 
-<div class="card_container">
-    <% @donationtypes.each do |donationtype| %>
-      <div class="card" onclick="this.classList.toggle('flipped')">
-      <div class="front">
-        <li class="card-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
+          <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@charity_profile.id, donationtype.id) if !@user.nil? && @user.charity? && donationtype.charity_profile.user_id == @user.id %>
 
-        <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@charity_profile.id, donationtype.id) if !@user.nil? && @user.charity? && donationtype.charity_profile.user_id == @user.id %>
+          <%= simple_form_for [ @basket, @basket_item ] do |f| %>
+            <%= f.hidden_field :donation_type_id, value: donationtype.id %>
+            <div class="card-button">
+              <%= f.submit "Add To Basket", class: "btn-orange-rounded", onclick: "event.stopPropagation();" %>
+            </div>
+          <% end %>
+        </div>
 
-        <%= simple_form_for [ @basket, @basket_item ] do |f| %>
-          <%= f.hidden_field :donation_type_id, value: donationtype.id %>
-          <div class="card-button">
-          <%= f.submit "Add To Basket", class: "btn-orange-rounded" %>
-          </div>
-          </div>
-        <% end %>
-  <div class="back">Back of card</div>
+        <div class="card-back">Back of card</div>
+      </div>
     </div>
   <% end %>
 </div>
-            </div>
 
-      <% if !@user.nil? && @user.charity %>
-        <% price = [] %>
-        <h1>Donation Inventory</h1>
-        <% @unredeeemed_donations.each do |item| %>
-          <% price << item.donation_type.price %>
-        <% end %>
-        <p>Unredeemed Donations: <%= @unredeeemed_donations.count %></p>
-        <p>Total Amount: <%= price.sum %></p>
-        <%= simple_form_for :items_redeemed, url: unredeemed_items_path, method: :get do |f| %>
-          <%= f.input :donation_type, :collection => DonationType.order(:name), :prompt => "Choose a Donation To Redeem" %>
-          <%= f.submit "Redeem Donation", class: "btn-orange-rounded" %>
-        <% end %>
-        <% end %>
-      </div>
-    </div>
+<% if !@user.nil? && @user.charity %>
+  <% price = [] %>
+  <h1>Donation Inventory</h1>
+  <% @unredeeemed_donations.each do |item| %>
+    <% price << item.donation_type.price %>
+  <% end %>
+  <p>Unredeemed Donations: <%= @unredeeemed_donations.count %></p>
+  <p>Total Amount: <%= price.sum %></p>
+  <%= simple_form_for :items_redeemed, url: unredeemed_items_path, method: :get do |f| %>
+    <%= f.input :donation_type, :collection => DonationType.order(:name), :prompt => "Choose a Donation To Redeem" %>
+    <%= f.submit "Redeem Donation", class: "btn-orange-rounded" %>
+  <% end %>
+<% end %>
