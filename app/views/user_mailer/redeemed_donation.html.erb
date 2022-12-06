@@ -1,0 +1,49 @@
+<style>
+  p {
+    font-family: sans-serif;
+  }
+</style>
+
+<% if @user.nil?  %>
+  <p>
+    <%= @greeting %> <%= @user_json["first_name"] %>,
+  </p>
+
+  <p>
+    We hope you're doing great today.
+  </p>
+
+  <p>
+    Your donation for a <%= @item.donation_type.name %> through The Giving Loop has just been redeemed!
+
+    Thank you for your donation and making a difference today.
+  </p>
+
+  <p>
+    The Giving Loop Team
+  </p>
+  <p>
+  <%= link_to "Get back on The Giving Loop now", root_url %>
+  </p>
+<% else %>
+  <p>
+    <%= @greeting %> <%= @user.first_name %>,
+  </p>
+
+  <p>
+    We hope you're doing great today.
+  </p>
+
+  <p>
+    Your donation for a <%= @item.donation_type.name %> through The Giving Loop has just been redeemed!
+
+    Thank you for your donation and making a difference today.
+  </p>
+
+  <p>
+    The Giving Loop Team
+  </p>
+  <p>
+  <%= link_to "Get back on The Giving Loop now", root_url %>
+  </p>
+<% end %>
