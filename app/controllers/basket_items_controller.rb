@@ -25,12 +25,20 @@ class BasketItemsController < ApplicationController
   end
 
   def unredeemed_items
-    # authorize @basket_item
+    skip_authorization
     @donation_type = DonationType.find(params["items_redeemed"]["donation_type"])
     @item = BasketItem.includes(:basket, :donation_type).where(redeemed: false, baskets: { state: 'paid' }, donation_type: @donation_type).first
-    @item.redeemed = true
-    # raise
-    @item.save!
+    if @item.nil?
+      redirect_to root_path, status: :unprocessable_entity
+    else
+      @item.redeemed = true
+      if @item.save
+        @user = @item.basket.user
+        UserMailer.redeemed_donation(@item).deliver_now
+      else
+        render "root", status: :unprocessable_entity
+      end
+    end
   end
 
   def destroy

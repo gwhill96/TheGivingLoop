@@ -13,4 +13,8 @@ class BasketItemPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
+  def unredeemed_items?
+    true
+  end
 end
