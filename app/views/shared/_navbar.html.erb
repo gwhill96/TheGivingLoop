@@ -39,7 +39,7 @@
         </li>
       </div>
 
-      <h1>Welcome to the charity page</h1>
+      
 <!-- User Navbar - Signed Out -->
     <% else %>
       <%= link_to root_path(@root) do %>
@@ -47,7 +47,7 @@
           <%= image_tag "HomeIcon.png", class: "nav-bar-icon-images" %>
         </li>
       <% end %>
-      <div data-controller="basket-subscription cl"
+      <div data-controller="basket-subscription"
         data-basket-subscription-basket-id-value="<%= session[:basket_id] %>">
         <div data-basket-subscription-target="basket">
             <%= render "basket_items/basket", basket: @basket %>

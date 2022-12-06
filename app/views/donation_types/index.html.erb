@@ -31,15 +31,14 @@
   <% end %>
 </div>
 
-<div class="card_container">
+<div class="invent">
   <% if !@user.nil? && @user.charity %>
     <% price = [] %>
     <h1>Donation Inventory</h1>
     <% @unredeeemed_donations.each do |item| %>
       <% price << item.donation_type.price %>
     <% end %>
-    <p>Unredeemed Donations: <%= @unredeeemed_donations.count %></p>
-    <p>Total Amount: <%= price.sum %></p>
+    <p>Unredeemed Donations: <%= @unredeeemed_donations.count %> - Total Amount: <%= price.sum %></p>
     <%= simple_form_for :items_redeemed, url: unredeemed_items_path, method: :get do |f| %>
       <%= f.input :donation_type, :collection => DonationType.order(:name), :prompt => "Choose a Donation To Redeem" %>
       <%= f.submit "Redeem Donation", class: "btn-orange-rounded" %>
