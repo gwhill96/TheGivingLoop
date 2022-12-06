@@ -1,4 +1,4 @@
-.card_container {
+.card-container {
   display: flex;
   margin: 0px auto 100px auto;
   max-width: 1000px;
@@ -8,20 +8,42 @@
   align-content: space-between;
   position: relative;
 }
-.card {
+.flip-card {
   margin-top: 10px;
   height: 200px;
   width: 80%;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  color: white;
-  position: relative;
-  border-radius: 10px;
-  background-image: url("hot_meal_card.png");
-  background-size: cover;
-  transition: transform 0.5s;
 }
 
-.card.flipped {
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  color: white;
+}
+
+.card-front {
+  background-image: url("hot_meal_card.png");
+  background-size: cover;
+}
+
+.card-back {
+  background-color: #333;
   transform: rotateY(180deg);
 }
 

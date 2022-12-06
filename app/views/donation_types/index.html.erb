@@ -8,15 +8,26 @@
   <h1 class="page-title">The Giving Loop</h1>
 </div>
 
-<div class="card_container">
+<div class="card-container">
   <% @donationtypes.each do |donationtype| %>
-  <div class="card" onclick="this.classList.toggle('flipped')">
-    <div class="front">
-      <li class="card-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
-      <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@charity_profile.id, donationtype.id) if !@user.nil? && @user.charity? && donationtype.charity_profile.user_id == @user.id %>
-      <%= simple_form_for [ @basket, @basket_item ] do |f| %>
-        <%= f.hidden_field :donation_type_id, value: donationtype.id %>
-        <div class="card-button"><%= f.submit "Add To Basket", class: "btn-orange-rounded" %></div>
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+        <%# style="background-image: url('<%=donationtype.image%');" %>
+          <li class="card-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
+
+          <%= link_to "Edit this card", edit_charity_profile_donation_type_path(@charity_profile.id, donationtype.id) if !@user.nil? && @user.charity? && donationtype.charity_profile.user_id == @user.id %>
+
+          <%= simple_form_for [ @basket, @basket_item ] do |f| %>
+            <%= f.hidden_field :donation_type_id, value: donationtype.id %>
+            <div class="card-button">
+              <%= f.submit "Add To Basket", class: "btn-orange-rounded", onclick: "event.stopPropagation();" %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="card-back">Back of card</div>
+      </div>
     </div>
       <% end %>
     <div class="back">Back of card</div>
