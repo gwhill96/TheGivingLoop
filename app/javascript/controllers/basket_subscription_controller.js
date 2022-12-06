@@ -10,6 +10,6 @@ export default class extends Controller {
       { channel: "BasketChannel", id: this.basketIdValue },
       { received: data => this.basketTarget.innerHTML = data }
     )
-    console.log(`Subscribe to the basket with the id ${this.basketIdValue}.`)
+    console.log(`Subscribe to the basket with the id ${this.basketIdValue}.`);
     }
   }
