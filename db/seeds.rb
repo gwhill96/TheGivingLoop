@@ -39,4 +39,3 @@ donationtype4 = DonationType.create(name: "Food for a day", price_cents: 1250, c
 puts "I am creating a donation-type"
 donationtype5 = DonationType.create(name: "Skills session", price_cents: 3000, charity_profile_id: charityprofile2.id, bio: "Your donation will provide a valuable skills training session for one person 👨‍💻. You will receive an email notification once your donation has been redeemed.🧡", photo_url: "skills_session_card.png")
 puts "I am creating a donation-type"
-
