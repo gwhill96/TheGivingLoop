@@ -1,5 +1,4 @@
 class UserMailer < ApplicationMailer
-
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -11,9 +10,23 @@ class UserMailer < ApplicationMailer
     @user = @item.basket.user
     if @user.nil?
       @user_json = @item.basket.guest_user
-      mail to: @user_json["email"], subject: 'Your donation has been redeemed!'
+      mail(
+        subject: 'Your donation has been redeemed!',
+        to: @user_json["email"],
+        from: 'donations@the-giving-loop.com',
+        # html_body: '',
+        track_opens: 'true',
+        message_stream: 'outbound'
+      )
     else
-      mail to: @user.email, subject: 'Your donation has been redeemed!'
+      mail(
+        to: @user.email,
+        subject: 'Your donation has been redeemed!',
+        from: 'donations@the-giving-loop.com',
+        # html_body: '',
+        track_opens: 'true',
+        message_stream: 'outbound'
+      )
     end
   end
 end
