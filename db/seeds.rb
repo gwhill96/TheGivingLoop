@@ -13,7 +13,7 @@ DonationType.destroy_all
 BasketItem.destroy_all
 puts "db destroyed"
 
-user1 = User.create(first_name: "Louise", last_name: "Stone", email: "donations@the-giving-loop.com", address: "Borough, London", charity: false, phone_number: "07111111111", password: 123456 )
+user1 = User.create(first_name: "Katherine", last_name: "Brown", email: "donations@the-giving-loop.com", address: "Borough, London", charity: false, phone_number: "07111111111", password: 123456 )
 puts "I am creating a new user"
 user2 = User.create(first_name: "Kat", last_name: "Brown", email: "katherine.brown06@outlook.com", address: "Battersea, London", charity: true, phone_number: "07111111112", password: 123456 )
 puts "I am creating a new user"
