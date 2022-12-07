@@ -10,7 +10,7 @@
           <% @basket.basket_items.each do |item| %>
               <li>
                 <div class="bitems">
-                  <img class="bimg" src="<%= image_path('hot_meal_card.png') %>">
+                  <img class="bimg" src="<%= image_path item.donation_type.photo_url %>">
                   <div class="btext"><%= item.donation_type.name %> - £<%= item.donation_type.price %></div>
                     <div class="bicon"><%= link_to basket_basket_item_path(item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, style: "color: black; margin: left;"  do %>
                     <i class="fa-regular fa-trash-can"></i>
