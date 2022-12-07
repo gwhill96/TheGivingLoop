@@ -3,7 +3,7 @@ class DonationTypesController < ApplicationController
 
   def index
     # THIS IS THE CODE WHERE THE BASKET IS BEING INSTANTIATED - NOT IN BASKET CONTROLLER
-    @donationtypes = DonationType.all
+    @donationtypes = DonationType.where(active: true)
     @basket_item = BasketItem.new
     @charity_profile = CharityProfile.find(@user.id) if !@user.nil? && @user.charity
     basket_id = session[:basket_id]
@@ -54,10 +54,14 @@ class DonationTypesController < ApplicationController
   end
 
   def update
-    authorize @donationtype
     @donationtype = DonationType.find(params[:id])
-    @donationtype.update(donationtype_params)
-    redirect_to donationtype_path(@donationtype)
+    authorize @donationtype
+    @user = current_user
+    if @donationtype.update(donationtype_params)
+      redirect_to user_path(@user), notice: "Donation has been updated"
+    else
+      render user_path(@user), notice: "Unable to update"
+    end
   end
 
   def destroy
@@ -70,6 +74,6 @@ class DonationTypesController < ApplicationController
   private
 
   def donationtype_params
-    params.require(:donationtype).permit(:name, :price)
+    params.require(:donation_type).permit(:active)
   end
 end

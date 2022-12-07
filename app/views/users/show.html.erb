@@ -20,12 +20,30 @@
           <hr>
         <% end %>
     <% else %>
-      <h3>Donations added by you:</h3></div>
-      <% @user.charity_profile.donation_types.each do |donation| %>
-        <div class="doncard">
-          <img class="donimg" src="<%= image_path('hot_meal_card.png') %>" alt="">
-          <h4><%= donation.name %></h4>
-          <p>£<%= donation.price %></p>
+      <h3>All Donations:</h3></div>
+      <% @donation_types.each do |donation| %>
+        <div class="doncard-charity">
+          <img class="donimg" src="<%= image_path donation.photo_url %>" alt="">
+          <div><b><p>Name:</p></b>
+            <h4><%= donation.name %></h4>
+          </div>
+          <div>
+            <b><p>About:</p></b>
+            <p><%= donation.bio %></p>
+          </div>
+          <div>
+            <b><p>Price:</p></b>
+            <p>£<%= donation.price %></p>
+          </div>
+          <div>
+          <b><p>Active:</p></b>
+          <%= simple_form_for [donation.charity_profile, donation]  do |f| %>
+            <%= f.input :active, label: false %>
+            <%= f.hidden_field :charity_profile_id, value: donation.charity_profile_id %>
+            <%= f.submit "Change Status" %>
+          <% end %>
+          </div>
+
         </div>
       <% end %>
     <% end %>
