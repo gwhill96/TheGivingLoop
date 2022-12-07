@@ -5,7 +5,7 @@ class BasketsController < ApplicationController
   def create
     @basket = Basket.find(params[:basket_id])
     authorize @basket
-    if @basket.empty?
+    if @basket.nil?
       redirect_to root_path, status: :unprocessable_entity
     else
       user = current_user if current_user
@@ -48,7 +48,7 @@ class BasketsController < ApplicationController
   def update
     skip_authorization
     @basket.update(guest_user: guest_basket_params)
-    if @basket.empty?
+    if @basket.nil?
       redirect_to root_path, status: :unprocessable_entity
     else
       items = BasketItem.where(basket_id: @basket.id)
