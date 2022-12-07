@@ -29,3 +29,26 @@
 .doncard h3 {
   color: #2D4059;
 }
+
+
+
+
+.doncard-charity {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  color: #2D4059;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+
+.doncard-charity .donimg {
+  width: 300px;
+  height: 100%;
+  // padding: 20px;
+}
