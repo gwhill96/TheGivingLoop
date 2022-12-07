@@ -9,10 +9,10 @@
         <% items.each do |item| %>
           <div class="doncard">
             <img class="donimg" src="<%= image_path item.donation_type.photo_url %>" alt="">
-              <h6><%= item.donation_type.name %> £<%= item.donation_type.price %></h6>
-              <p><strong>Date of purchase:</strong>  <%= item.created_at.to_formatted_s(:short) %></p>
+            <div><h6><strong><%= item.donation_type.name %></strong></h6> <h6>£<%= item.donation_type.price %></h6></div>
+              <p><strong>Order: </strong>  #<%= item.basket.id %></p>
                <% if item.redeemed %>
-                 <p> Redeemed on <%=  item.updated_at %> </p>
+                <div> <p> <strong>Redeemed on:</strong></p> <p> <%= item.updated_at.to_formatted_s(:short)  %> </p></div>
                 <% else %>
                  <p> Not yet redeemed </p>
                 <% end %>
