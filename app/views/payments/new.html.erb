@@ -3,17 +3,17 @@
     <div class="row py-4">
       <div class="col">
         <h1><strong>Order Summary</strong></h1>
-        <hr>
-        <p>Purchase of :</p>
-        <% @order.basket_items.each do |item| %>
-        <li>
-        <div class="citems">
-          <div class="citem"><strong><%= item.donation_type.name %></strong></div>
-          <div class="citem"><strong>£<%= item.donation_type.price %></strong></div>
+        <div class="c-card-items">
+          <h4>Purchase of :</h4>
+          <% @order.basket_items.each do |item| %>
+          <li>
+          <div class="citems">
+            <div class="citem"><strong><%= item.donation_type.name %></strong></div>
+            <div class="citem"><strong>£<%= item.donation_type.price %></strong></div>
+          </div>
+          </li>
+          <% end %>
         </div>
-        </li>
-        <% end %>
-        <hr>
         <p>Total Amount: <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
         <button id="pay" class="btn-orange-rounded" style="width: 40%;">Pay</button>
         <script src="https://js.stripe.com/v3/"></script>
