@@ -8,10 +8,10 @@
         <% items.each do |item| %>
           <div class="doncard">
             <img class="donimg" src="<%= image_path item.donation_type.photo_url %>" alt="">
-              <h6><%= item.donation_type.name %> £<%= item.donation_type.price %></h6>
-              <p><strong>Date of purchase:</strong>  <%= item.created_at.to_formatted_s(:short) %></p>
+            <div><h6><strong><%= item.donation_type.name %></strong></h6> <h6>£<%= item.donation_type.price %></h6></div>
+              <p><strong>Order: </strong>  #<%= item.basket.id %></p>
                <% if item.redeemed %>
-                 <p> Redeemed on <%=  item.updated_at %> </p>
+                <div> <p> <strong>Redeemed on:</strong></p> <p> <%= item.updated_at.to_formatted_s(:short)  %> </p></div>
                 <% else %>
                  <p> Not yet redeemed </p>
                 <% end %>
@@ -19,12 +19,30 @@
           <hr>
         <% end %>
     <% else %>
-      <h3>Donations added by you:</h3></div>
-      <% @user.charity_profile.donation_types.each do |donation| %>
-        <div class="doncard">
-          <img class="donimg" src="<%= image_path('hot_meal_card.png') %>" alt="">
-          <h4><%= donation.name %></h4>
-          <p>£<%= donation.price %></p>
+      <h3>All Donations:</h3></div>
+      <% @donation_types.each do |donation| %>
+        <div class="doncard-charity">
+          <img class="donimg" src="<%= image_path donation.photo_url %>" alt="">
+          <div><b><p>Name:</p></b>
+            <h4><%= donation.name %></h4>
+          </div>
+          <div>
+            <b><p>About:</p></b>
+            <p><%= donation.bio %></p>
+          </div>
+          <div>
+            <b><p>Price:</p></b>
+            <p>£<%= donation.price %></p>
+          </div>
+          <div>
+          <b><p>Active:</p></b>
+          <%= simple_form_for [donation.charity_profile, donation]  do |f| %>
+            <%= f.input :active, label: false %>
+            <%= f.hidden_field :charity_profile_id, value: donation.charity_profile_id %>
+            <%= f.submit "Change Status" %>
+          <% end %>
+          </div>
+
         </div>
       <% end %>
     <% end %>

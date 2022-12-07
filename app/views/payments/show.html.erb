@@ -1,6 +1,6 @@
 <div class="checkcont">
   <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%></div>
-  <h1>Thank you <%= current_user.first_name %> for your donation!</h1>
+  <h1>Thank you for your donation!</h1>
   <div>
     <p>Here's a breakdown of your donation:</p>
     <p>Order #<%= @order.id %></p>
@@ -8,6 +8,6 @@
     <li><strong><%= item.donation_type.name %> </strong><%= humanized_money_with_symbol item.donation_type.price %></li>
     <% end %>
     <p>Total Amount: <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
-    <p>We'll email you once your donation's been redeemed!</p>
+    <p>We'll an email to the email you provided once your donation's been redeemed!</p>
   </div>
 </div>
