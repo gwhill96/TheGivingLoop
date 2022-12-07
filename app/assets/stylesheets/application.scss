@@ -20,3 +20,10 @@ body {
   color: white;
   text-decoration:underline;
 }
+
+.logo-center {
+  display: flex;
+  justify-content: center;
+  height: 70px;
+  margin-top: 10px;
+}

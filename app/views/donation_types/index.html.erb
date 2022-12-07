@@ -1,12 +1,12 @@
 <div class = "header-section">
   <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%></div>
+  </div>
+  <h1 class="page-title">The Giving Loop</h1>
+  <p class="body-text">Closing the feedback loop on charitable donations</p>
   <div class = "info-icon" >
     <%= link_to about_path do %>
     <%= image_tag "InfoIcon.png", style:"margin-top: 5px; margin-right: 5px;", class: "nav-bar-icon-images"%>
     <% end %>
-  </div>
-  <h1 class="page-title">The Giving Loop</h1>
-  <p class="body-text">Closing the feedback loop on charitable donations</p>
 </div>
 
 <% if @user.nil? || !@user.charity %>
@@ -16,15 +16,24 @@
         <div class="card-inner">
           <div class="card-front">
             <%= image_tag donationtype.photo_url %>
-              <li class="card-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
+              <li class="card-front-title"><%= donationtype.name %></li>
+              <li class="card-price"><%= humanized_money_with_symbol(donationtype.price) %></li>
               <%= simple_form_for [ @basket, @basket_item ] do |f| %>
                 <%= f.hidden_field :donation_type_id, value: donationtype.id %>
                 <div class="card-button">
-                  <%= f.submit "Add To Basket", class: "btn-orange-rounded", onclick: "event.stopPropagation();" %>
+                  <%= f.submit "Add To Basket", class: "btn-orange-card-rounded", onclick: "event.stopPropagation();" %>
                 </div>
               <% end %>
           </div>
-          <div class="card-back"><%= donationtype.bio %></div>
+          <div class="card-back"><%= donationtype.bio %>
+            <li class="card-back-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
+            <%= simple_form_for [ @basket, @basket_item ] do |f| %>
+              <%= f.hidden_field :donation_type_id, value: donationtype.id %>
+                <div class="card-button">
+                  <%= f.submit "Add To Basket", class: "btn-orange-card-rounded", onclick: "event.stopPropagation();" %>
+                </div>
+              <% end %>
+          </div>
         </div>
       </div>
       <% end %>
