@@ -6,9 +6,10 @@
       <% price << item.donation_type.price %>
     <% end %>
       <div class = "basket-idex-container">
-        <div class = "circle"> <%= @basket.basket_items.count %> </div>
         <%= link_to basket_path(@basket) do %>
-        <%= image_tag "shopping-basket.png", class: "nav-bar-icon-images"%> <% end %>
+        <%= image_tag "shopping-basket.png", class: "nav-bar-icon-images"%>
+        <div class = "circle"> <%= @basket.basket_items.count %> </div>
+        <% end %>
       </div>
   </div>
 <% else %>
