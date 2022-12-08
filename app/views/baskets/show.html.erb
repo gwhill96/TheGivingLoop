@@ -1,10 +1,9 @@
 <div class="checkcont">
     <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%></div>
-    <br>
     <div>
-      <h1><strong>Your Basket Items</strong></h1>
+      <h1 class="page-title">Your Basket</h1>
       <br>
-       <h5><strong>Update your cart or proceed to checkout</strong></h5>
+       <h5>Update your cart or proceed to checkout</h5>
         <hr>
           <%# <ul style="list-style: none; font: size 20px;"> %>
           <% @basket.basket_items.each do |item| %>
