@@ -15,7 +15,7 @@
         <div class="card-inner">
           <div class="card-front">
             <%= image_tag donationtype.photo_url %>
-              <li class="card-front-title"><%= donationtype.name %></li>
+              <li class="card-front-title"><%= donationtype.name %>  <i class="fa-solid fa-circle-info"></i> </li>
               <li class="card-price"><%= humanized_money_with_symbol(donationtype.price) %></li>
               <%= simple_form_for [ @basket, @basket_item ] do |f| %>
                 <%= f.hidden_field :donation_type_id, value: donationtype.id %>

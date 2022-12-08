@@ -1,13 +1,15 @@
 <div class="checkcont">
   <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%></div>
-  <h1>Thank you for your donation!</h1>
+  <h1 class="page-title">Thank you for your donation!</h1>
   <div>
-    <p>Here's a breakdown of your order:</p>
+  <br>
+    <p>Here's a breakdown of your donation:</p>
     <p>Order #<%= @order.id %></p>
     <% @order.basket_items.each do |item| %>
-    <li><strong><%= item.donation_type.name %></strong><%= humanized_money_with_symbol item.donation_type.price %></li>
+    <li><%= item.donation_type.name %> - <%= humanized_money_with_symbol item.donation_type.price %></li>
     <% end %>
-    <p>Total Amount: <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
-    <p>We'll let you know once your donation's been redeemed!</p>
+    <p><strong>Total Amount: <%= humanized_money_with_symbol @order.amount %></strong></p>
+    <p>We'll notify you at the email you provided once your donation's been redeemed!</p>
   </div>
+  <%= image_tag "skills_session_card.png", style: "width: 300px; border-radius: 8px;" %>
 </div>

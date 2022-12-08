@@ -56,9 +56,17 @@
   padding: 7px 20px 7px;
   border-style: none !important;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 5px 5px rgba(0,0,0,0.7);
   text-align: center;
+  transition: all ease-in .03s;
 }
+
+.btn-orange-card-rounded:active {
+  box-shadow: none;
+  transform: translateY(4px) !important;
+  transition: all ease-in .03s;
+}
+
 .btn-orange-card-rounded:hover {
   color: white;
   background: #e86c2e;

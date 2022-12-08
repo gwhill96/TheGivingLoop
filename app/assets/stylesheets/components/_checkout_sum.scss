@@ -1,9 +1,9 @@
 .checkcont {
-  padding: 15px;
-  margin: 20px;
   text-align: center;
   position: relative;
   margin-bottom: 60px;
+  padding-left: 10px;
+  padding-right: 10px ;
 }
 .checkcont .img {
   align-items: center;
@@ -11,4 +11,14 @@
 .citems {
   display: flex;
   justify-content: space-between;
+}
+
+.c-card-items {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
