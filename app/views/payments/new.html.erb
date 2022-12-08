@@ -1,8 +1,8 @@
 <div class="checkcont">
   <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%></div>
+  <h1 class="page-title">Order Summary</h1>
     <div class="row py-4">
       <div class="col">
-        <h1><strong>Order Summary</strong></h1>
         <div class="c-card-items">
           <h4>Purchase of :</h4>
           <% @order.basket_items.each do |item| %>
@@ -15,7 +15,7 @@
           <% end %>
         </div>
         <p>Total Amount: <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
-        <button id="pay" class="btn-orange-rounded" style="width: 40%;">Pay</button>
+        <button id="pay" class="btn-orange-rounded" style="width: 40%;">Make Donation</button>
         <script src="https://js.stripe.com/v3/"></script>
         <script>
           const paymentButton = document.getElementById('pay');
