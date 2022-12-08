@@ -2,19 +2,21 @@
   <h1 class="page-title">Order Summary</h1>
     <div class="row py-4">
       <div class="col">
-        <div class="c-card-items">
           <h4>Purchase of :</h4>
+          <hr>
+        <div class="c-card-items">
           <% @order.basket_items.each do |item| %>
           <li>
           <div class="citems">
-            <div class="citem"><strong><%= item.donation_type.name %></strong></div>
-            <div class="citem"><strong>£<%= item.donation_type.price %></strong></div>
+            <div><%= item.donation_type.name %></div>
+            <div>£<%= item.donation_type.price %></div>
           </div>
           </li>
           <% end %>
         </div>
-        <p>Total Amount: <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
-        <button id="pay" class="btn-orange-rounded" style="width: 40%;">Make Donation</button>
+        <hr>
+        <h4>Total Amount: <strong><%= humanized_money_with_symbol @order.amount %></strong></h4>
+        <button id="pay" class="btn-orange-rounded" style="width: 40%;">Donate</button>
         <script src="https://js.stripe.com/v3/"></script>
         <script>
           const paymentButton = document.getElementById('pay');
