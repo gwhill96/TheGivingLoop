@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
-    @donation_types = DonationType.all
+    @donation_types = DonationType.order(created_at: :desc)
     authorize @user
   end
 
