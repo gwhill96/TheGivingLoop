@@ -58,7 +58,7 @@ class DonationTypesController < ApplicationController
     authorize @donationtype
     @user = current_user
     if @donationtype.update(donationtype_params)
-      flash.notice = "Donation has been updated"
+      flash.notice = "Donation status updated"
       redirect_to user_path(@user)
     else
       flash.alert = "Unable to update"

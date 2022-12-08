@@ -1,101 +1,106 @@
 <div class="checkcont">
-    <div class="my_profile_title", style="margin:0px"><h1><strong>Your Profile</strong></h1>
-
-<% if !@user.charity  %>
-<div class="my_profile_button_container">
-  <div class="btn-edit-orange-rounded" data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</div>
-  <div class="modal custom fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content" style="background: #8EB8E5;" >
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Profile</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-      <div class="modal-body">
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <%= f.error_notification %>
-
-          <div class="form-inputs">
-            <%= f.input :email, required: true, autofocus: true %>
-
-            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-              <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-            <% end %>
-
-             <%= f.input :phone_number,
-                        hint: "leave it blank if you don't want to change it",
-                        required: false,
-                        input_html: { autocomplete: "new-phone-number" }, class: %>
-            <%= f.input :password,
-                        hint: "leave it blank if you don't want to change it",
-                        required: false,
-                        input_html: { autocomplete: "new-password" } %>
-            <%= f.input :password_confirmation,
-                        required: false,
-                        input_html: { autocomplete: "new-password" } %>
-            <%= f.input :current_password,
-                        hint: "we need your current password to confirm your changes",
-                        required: true,
-                        input_html: { autocomplete: "current-password" } %>
-          </div>
-
-          <div class="form-actions">
-           <%= f.button :submit, "Update", class: "btn btn-primary" %>
-        <% end %>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-<% end %>
-</div>
-      <hr>
-    <% if !@user.charity  %>
-    <div class="my_profile_title">
+  <% if !@user.charity  %>
+    <div class="my_profile_title", style="margin:0px">
       <h1><strong>Your Profile</strong></h1>
+    </div>
+
+    <div class="my_profile_button_container">
+      <div class="btn-edit-orange-rounded" data-bs-toggle="modal" data-bs-target="#editModal">Edit Profile</div>
+      <div class="modal custom fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content" style="background: #8EB8E5;" >
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Profile</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+              <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <%= f.error_notification %>
+                  <div class="form-inputs">
+                    <%= f.input :email, required: true, autofocus: true %>
+                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+                    <% end %>
+                    <%= f.input :phone_number,
+                                hint: "leave it blank if you don't want to change it",
+                                required: false,
+                                input_html: { autocomplete: "new-phone-number" }, class: %>
+                    <%= f.input :password,
+                                hint: "leave it blank if you don't want to change it",
+                                required: false,
+                                input_html: { autocomplete: "new-password" } %>
+                    <%= f.input :password_confirmation,
+                                required: false,
+                                input_html: { autocomplete: "new-password" } %>
+                    <%= f.input :current_password,
+                                hint: "we need your current password to confirm your changes",
+                                required: true,
+                                input_html: { autocomplete: "current-password" } %>
+                  </div>
+                <div class="form-actions">
+                    <%= f.button :submit, "Update", class: "btn btn-primary" %>
+              <% end %>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="my_profile_title">
       <h2><strong>Past Donations</strong></h2>
     </div>
-      <hr>
-        <% items = BasketItem.includes(:basket, :donation_type).where(baskets: {user_id: current_user}).where(baskets: { state: 'paid' }).order(created_at: :desc)%>
-        <% items.each do |item| %>
-          <div class="doncard">
-            <img class="bimg" src="<%= image_path item.donation_type.photo_url %>" alt="">
-            <div><h6><strong><%= item.donation_type.name %></strong></h6> <h6>£<%= item.donation_type.price %></h6></div>
-              <p><strong>Order: </strong>  #<%= item.basket.id %></p>
-               <% if item.redeemed %>
-                <div> <p> <strong>Redeemed on:</strong></p> <p> <%= item.updated_at.to_formatted_s(:short)  %> </p></div>
-                <% else %>
-                 <p> Not yet redeemed </p>
-                <% end %>
-          </div>
-          <hr>
-        <% end %>
-    <% else %>
-      <div class="my_profile_title">
-        <h1>Dashboard:</h1>
+
+    <hr>
+
+    <% items = BasketItem.includes(:basket, :donation_type).where(baskets: {user_id: current_user}).where(baskets: { state: 'paid' }).order(created_at: :desc)%>
+    <% items.each do |item| %>
+      <div class="doncard">
+        <img class="bimg" src="<%= image_path item.donation_type.photo_url %>" alt="">
+        <div><h6><strong><%= item.donation_type.name %></strong></h6> <h6>£<%= item.donation_type.price %></h6></div>
+          <p><strong>Order: </strong>  #<%= item.basket.id %></p>
+          <% if item.redeemed %>
+            <div> <p> <strong>Redeemed on:</strong></p> <p> <%= item.updated_at.to_formatted_s(:short)  %> </p></div>
+          <% else %>
+            <p> Not yet redeemed </p>
+          <% end %>
       </div>
+      <hr>
+    <% end %>
+
+  <% else %>
+
+    <div class="my_profile_title">
+      <h1>Dashboard</h1>
+    </div>
+    <div class="doncard-charity-container">
       <% @donation_types.each do |donation| %>
         <div class="doncard-charity">
-          <img class="donimg" src="<%= image_path donation.photo_url %>" alt="">
-          <div style="padding: 0px 10px">
-            <div class="d-flex align-items-baseline">
-              <h4 style="text-align: justify;"><%= donation.name %>: &nbsp</h4><p> </p>
-              <h5> £<%= donation.price %></h5>
-            </div>
-            <p style="text-align: justify;"><%= donation.bio %></p>
-          </div>
           <div>
-            <div class="d-flex justify-content-between">
-              <b><p>Active:</p></b>
-              <%= simple_form_for [donation.charity_profile, donation]  do |f| %>
-                <%= f.input :active, label: false %>
-            </div>
-              <%= f.hidden_field :charity_profile_id, value: donation.charity_profile_id %>
-              <%= f.submit "Change Status", class: "btn-orange-rounded" %>
-              <% end %>
+            <img class="donimg" src="<%= image_path donation.photo_url %>" alt="">
+              <div class="mb-2">
+                  <div class="d-flex align-items-baseline mt-1">
+                    <h4 style="text-align: justify;"><%= donation.name %>: &nbsp</h4><p> </p>
+                    <h5> £<%= donation.price %></h5>
+                  </div>
+                <p style="text-align: justify;"><%= donation.bio %></p>
+              </div>
+
+              <div class="active-form">
+                <p>Active:</p>
+                <%= simple_form_for [donation.charity_profile, donation]  do |f| %>
+                  <%= f.input :active, label: false %>
+                  <%= f.hidden_field :charity_profile_id, value: donation.charity_profile_id %>
+                  <%= f.submit "Change Status", class: "btn-orange-rounded" %>
+                <% end %>
+              </div>
+
           </div>
         </div>
       <% end %>
-    <% end %>
-
+    </div>
+  <% end %>
 </div>

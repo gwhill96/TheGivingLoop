@@ -29,11 +29,11 @@ puts "I am creating a charity profile user"
 charityprofile2 = CharityProfile.create(user_id: user3.id)
 puts "I am creating a charity profile user"
 
-donationtype1 = DonationType.create(name: "Bed for one night", price_cents: 1000, charity_profile_id: charityprofile1.id, bio: "Your donation will provide a safe place to sleep with a warm bed 🛏 for a night in one of our shelters 🏨. You will receive an email notification once your donation has been redeemed.🧡 ", photo_url: "warm_bed_card.png")
+donationtype1 = DonationType.create(name: "Bed for one night", price_cents: 1000, charity_profile_id: charityprofile1.id, bio: "Your donation will provide a safe place to sleep with a warm bed 🛏 for a night in one of our shelters 🏨. You'll receive an email once your donation has been redeemed.🧡 ", photo_url: "warm_bed_card.png")
 puts "I am creating a donation-type"
 donationtype2 = DonationType.create(name: "Meal", price_cents: 500, charity_profile_id: charityprofile1.id, bio: "Your donation will provide a hot meal 🍲 for one person. You will receive an email notification once your donation has been redeemed.🧡", photo_url: "hot_meal_card.png")
 puts "I am creating a donation-type"
-donationtype3 = DonationType.create(name: "Bed for a week", price_cents: 7000, charity_profile_id: charityprofile2.id, bio: "Your donation will provide a safe place to sleep with a warm bed 🛏 for a week in one of our shelters 🏨. You will receive an email notification once your donation has been redeemed.🧡", photo_url: "warm-bed-for-week.png")
+donationtype3 = DonationType.create(name: "Bed for a week", price_cents: 7000, charity_profile_id: charityprofile2.id, bio: "Your donation will provide a safe place to sleep with a warm bed 🛏 for a week in one of our shelters 🏨. You'll receive an email once your donation has been redeemed.🧡", photo_url: "warm-bed-for-week.png")
 puts "I am creating a donation-type"
 donationtype4 = DonationType.create(name: "Food for a day", price_cents: 1250, charity_profile_id: charityprofile2.id, bio: "Your donation will provide three nutritional meals 🍲🍎 for one person. You will receive an email notification once your donation has been redeemed.🧡", photo_url: "food-one-week.png")
 puts "I am creating a donation-type"

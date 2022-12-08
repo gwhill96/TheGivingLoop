@@ -120,12 +120,20 @@
 
 .invent {
   padding: 20px;
-  margin-bottom: 80px;
-  margin-top: 40px;
+  margin: 20px auto 80px auto;
   text-align: center;
   background-color: #8EB8E5;
   border-radius: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
   color: white;
+  max-width: 1000px;
+}
+
+.invent select {
+  max-width: 500px;
+  display:inline
+}
+
+.invent input {
+  font-size: 105%;
+  min-width: 500px;
 }
