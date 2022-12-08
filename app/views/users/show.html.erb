@@ -1,4 +1,3 @@
-  <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%></div>
 <div class="checkcont">
     <div class="my_profile_title", style="margin:0px"><h1><strong>Your Profile</strong></h1>
 
@@ -52,7 +51,10 @@
 </div>
       <hr>
     <% if !@user.charity  %>
-      <h2><strong>Past Donations</strong></h2></div>
+    <div class="my_profile_title">
+      <h1><strong>Your Profile</strong></h1>
+      <h2><strong>Past Donations</strong></h2>
+    </div>
       <hr>
         <% items = BasketItem.includes(:basket, :donation_type).where(baskets: {user_id: current_user}).where(baskets: { state: 'paid' }).order(created_at: :desc)%>
         <% items.each do |item| %>
@@ -69,30 +71,29 @@
           <hr>
         <% end %>
     <% else %>
-      <h3>All Donations:</h3></div>
+      <div class="my_profile_title">
+        <h1>Dashboard:</h1>
+      </div>
       <% @donation_types.each do |donation| %>
         <div class="doncard-charity">
           <img class="donimg" src="<%= image_path donation.photo_url %>" alt="">
-          <div><b><p>Name:</p></b>
-            <h4><%= donation.name %></h4>
+          <div style="padding: 0px 10px">
+            <div class="d-flex align-items-baseline">
+              <h4 style="text-align: justify;"><%= donation.name %>: &nbsp</h4><p> </p>
+              <h5> £<%= donation.price %></h5>
+            </div>
+            <p style="text-align: justify;"><%= donation.bio %></p>
           </div>
           <div>
-            <b><p>About:</p></b>
-            <p><%= donation.bio %></p>
+            <div class="d-flex justify-content-between">
+              <b><p>Active:</p></b>
+              <%= simple_form_for [donation.charity_profile, donation]  do |f| %>
+                <%= f.input :active, label: false %>
+            </div>
+              <%= f.hidden_field :charity_profile_id, value: donation.charity_profile_id %>
+              <%= f.submit "Change Status", class: "btn-orange-rounded" %>
+              <% end %>
           </div>
-          <div>
-            <b><p>Price:</p></b>
-            <p>£<%= donation.price %></p>
-          </div>
-          <div>
-          <b><p>Active:</p></b>
-          <%= simple_form_for [donation.charity_profile, donation]  do |f| %>
-            <%= f.input :active, label: false %>
-            <%= f.hidden_field :charity_profile_id, value: donation.charity_profile_id %>
-            <%= f.submit "Change Status" %>
-          <% end %>
-          </div>
-
         </div>
       <% end %>
     <% end %>
