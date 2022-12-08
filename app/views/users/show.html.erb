@@ -1,6 +1,5 @@
   <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%></div>
-  <h1 class="page-title">Your Profile</h1>
-<div class="checkcont">
+    <div class="my_profile_title"> <h1><strong>Your Profile</strong></h1>
     <% if !@user.charity  %>
       <h2><strong>Past Donations</strong></h2></div>
       <hr>
@@ -20,6 +19,21 @@
         <% end %>
     <% else %>
       <h3>All Donations:</h3></div>
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="..." class="rounded mr-2" alt="...">
+          <strong class="mr-auto">Bootstrap</strong>
+          <small>TEST</small>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="toast-body">
+
+        </div>
+      </div>
+
+
       <% @donation_types.each do |donation| %>
         <div class="doncard-charity">
           <img class="donimg" src="<%= image_path donation.photo_url %>" alt="">

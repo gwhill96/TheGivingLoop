@@ -29,12 +29,15 @@ class BasketItemsController < ApplicationController
     @donation_type = DonationType.find(params["items_redeemed"]["donation_type"])
     @item = BasketItem.includes(:basket, :donation_type).where(redeemed: false, baskets: { state: 'paid' }, donation_type: @donation_type).first
     if @item.nil?
-      redirect_to root_path, status: :unprocessable_entity
+      flash.alert = "No donations available"
+      redirect_to root_path
     else
       @item.redeemed = true
       if @item.save
         @user = @item.basket.user
         UserMailer.redeemed_donation(@item).deliver_now
+        flash.notice = "Donation successfully redeemed"
+        redirect_to root_path
       else
         render "root", status: :unprocessable_entity
       end
