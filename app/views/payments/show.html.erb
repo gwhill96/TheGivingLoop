@@ -6,10 +6,10 @@
     <p>Here's a breakdown of your donation:</p>
     <p>Order #<%= @order.id %></p>
     <% @order.basket_items.each do |item| %>
-    <li><strong><%= item.donation_type.name %> </strong><%= humanized_money_with_symbol item.donation_type.price %></li>
+    <li><%= item.donation_type.name %> - <%= humanized_money_with_symbol item.donation_type.price %></li>
     <% end %>
-    <p>Total Amount: <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
+    <p><strong>Total Amount: <%= humanized_money_with_symbol @order.amount %></strong></p>
     <p>We'll notify you at the email you provided once your donation's been redeemed!</p>
   </div>
-  <%= image_tag "skills_session_card.png", style: "width: 300px;" %>
+  <%= image_tag "skills_session_card.png", style: "width: 300px; border-radius: 8px;" %>
 </div>
