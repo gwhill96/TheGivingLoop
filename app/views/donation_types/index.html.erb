@@ -8,7 +8,8 @@
     <%= link_to about_path do %>
     <%= image_tag "InfoIcon.png", style:"margin-top: 5px; margin-right: 5px;", class: "nav-bar-icon-images" %>
     <% end %>
-</div>
+  </div>
+
   <div class="card-container">
     <% @donationtypes.each do |donationtype| %>
       <div class="flip-card" onclick="this.classList.toggle('flipped')">
@@ -24,6 +25,7 @@
                 </div>
               <% end %>
           </div>
+
           <div class="card-back"><%= donationtype.bio %>
             <li class="card-back-title"><%= donationtype.name %> - <%= humanized_money_with_symbol(donationtype.price) %></li>
             <%= simple_form_for [ @basket, @basket_item ] do |f| %>
@@ -44,6 +46,8 @@
   <div class="invent">
     <% price = [] %>
     <h1>Welcome <%= @user.first_name %>,</h1>
+    <br>
+    <h5>Below is a summary of donations available to redeem:</h5>
     <br>
     <h2>Donation Inventory</h2>
     <% @unredeeemed_donations.each do |item| %>
