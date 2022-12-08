@@ -1,15 +1,14 @@
 <div class = "header-section">
-  <div class = "logo-center" > <%= image_tag "THE_GIVING_LOOP.png"%></div>
-  </div>
   <h1 class="page-title">The Giving Loop</h1>
-  <p class="body-text">Closing the feedback loop on charitable donations</p>
-  <div class = "info-icon" >
-    <%= link_to about_path do %>
-    <%= image_tag "InfoIcon.png", style:"margin-top: 5px; margin-right: 5px;", class: "nav-bar-icon-images"%>
-    <% end %>
+  <p class="body-text">Closing the feedback loop on charitable donations for the homeless</p>
 </div>
 
 <% if @user.nil? || !@user.charity %>
+  <div class = "info-icon" >
+    <%= link_to about_path do %>
+    <%= image_tag "InfoIcon.png", style:"margin-top: 5px; margin-right: 5px;", class: "nav-bar-icon-images" %>
+    <% end %>
+</div>
   <div class="card-container">
     <% @donationtypes.each do |donationtype| %>
       <div class="flip-card" onclick="this.classList.toggle('flipped')">
