@@ -120,12 +120,23 @@
 
 .invent {
   padding: 20px;
-  margin: 20px auto 80px auto;
+  margin: 50px auto 80px auto;
   text-align: center;
   background-color: #8EB8E5;
   border-radius: 10px;
-  color: white;
   max-width: 1000px;
+  & h1 {
+    color: white;
+  }
+  & h5{
+    color: white;
+  }
+  & h2{
+    color: white;
+  }
+  & p{
+    color: white;
+  }
 }
 
 .invent select {
